@@ -5,6 +5,7 @@ from PyQt5.QtWebEngineWidgets import *
 import os
 import sys
 import validators
+from PyQt5.QtGui import QKeySequence
 
 class AboutDialog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -29,7 +30,7 @@ class AboutDialog(QDialog):
         logo.setPixmap(QPixmap(os.path.join('images', 'ma-icon-128.png')))
         layout.addWidget(logo)
 
-        layout.addWidget(QLabel("Version 1"))
+        layout.addWidget(QLabel("Mark 2"))
 
         for i in range(0, layout.count()):
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
@@ -43,7 +44,25 @@ class AboutDialog(QDialog):
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
+        #defining shotcuts
 
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+t'), self)
+        self.shortcut_open.activated.connect(self.add_new_tab)
+
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+o'), self)
+        self.shortcut_open.activated.connect(self.open_file)
+
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+a'), self)
+        self.shortcut_open.activated.connect(self.about)
+
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+h'), self)
+        self.shortcut_open.activated.connect(self.navigate_mozarella)
+
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+v'), self)
+        self.shortcut_open.activated.connect(self.view)
+
+
+        
         self.tabs = QTabWidget()
         self.tabs.setDocumentMode(True)
         self.tabs.tabBarDoubleClicked.connect(self.tab_open_doubleclick)
@@ -196,14 +215,9 @@ class MainWindow(QMainWindow):
         dlg.exec_()
 
     def open_file(self):
-        filename, _ = QFileDialog.getOpenFileName(self, "Open file", "","Hypertext Markup Language (*.htm *.html);;")
-
-        if filename:
-            with open(filename, 'r') as f:
-                html = f.read()
-
-            self.tabs.currentWidget().setHtml(html)
-            self.urlbar.setText(filename)
+        filename, _ = QFileDialog.getOpenFileName(self, "Open file", "","HTML(*.htm *.html);;")
+        self.tabs.currentWidget().setUrl(QUrl(f"file:///{filename}"))
+       
 
    
 
@@ -215,6 +229,9 @@ class MainWindow(QMainWindow):
         inputtext=self.urlbar.text()
         if validators.url(inputtext):
             q = QUrl(self.urlbar.text())
+        elif inputtext.find("file:///C:/")==0 or inputtext.find("file:///D:/")==0 or inputtext.find("file:///E:/")==0:
+            q = QUrl(inputtext)  
+
         else:
             url=f'https://www.ecosia.org/search?q={inputtext.replace("+","%2B").replace(" ","+")}'
             q = QUrl(url)
