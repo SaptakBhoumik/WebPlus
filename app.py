@@ -6,6 +6,7 @@ import os
 import sys
 import validators
 from PyQt5.QtGui import QKeySequence
+from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
 
 class AboutDialog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -46,16 +47,16 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
         #defining shotcuts
 
-        self.shortcut_open = QShortcut(QKeySequence('Ctrl+t'), self)
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+t'), self)
         self.shortcut_open.activated.connect(self.add_new_tab)
 
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+o'), self)
         self.shortcut_open.activated.connect(self.open_file)
 
-        self.shortcut_open = QShortcut(QKeySequence('Ctrl+a'), self)
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+a'), self)
         self.shortcut_open.activated.connect(self.about)
 
-        self.shortcut_open = QShortcut(QKeySequence('Ctrl+h'), self)
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+h'), self)
         self.shortcut_open.activated.connect(self.navigate_mozarella)
 
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+v'), self)
@@ -160,7 +161,18 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
-
+        
+    
+    @QtCore.pyqtSlot("QWebEngineDownloadItem*")
+    def on_downloadRequested(self, download):
+        old_path = download.url().path()  # download.path()
+        suffix = QtCore.QFileInfo(old_path).suffix()
+        path, _ = QtWidgets.QFileDialog.getSaveFileName(
+            self, "Save File", old_path, "*." + suffix
+        )
+        if path:
+            download.setPath(path)
+            download.accept()
     def add_new_tab(self, qurl=None, label="Blank"):
 
         if qurl is None:
@@ -168,6 +180,9 @@ class MainWindow(QMainWindow):
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
+        QtWebEngineWidgets.QWebEngineProfile.defaultProfile().downloadRequested.connect(
+            self.on_downloadRequested
+        )
         i = self.tabs.addTab(browser, label)
 
         self.tabs.setCurrentIndex(i)
@@ -177,7 +192,9 @@ class MainWindow(QMainWindow):
 
         browser.loadFinished.connect(lambda _, i=i, browser=browser:
                                      self.tabs.setTabText(i, browser.page().title()))
-        
+    
+    
+
     def tab_open_doubleclick(self, i):
         if i == -1:  
             self.add_new_tab()
@@ -216,7 +233,10 @@ class MainWindow(QMainWindow):
 
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open file", "","HTML(*.htm *.html);;")
-        self.tabs.currentWidget().setUrl(QUrl(f"file:///{filename}"))
+        if filename=="":
+            pass
+        else:
+            self.tabs.currentWidget().setUrl(QUrl(f"file:///{filename}"))
        
 
    
@@ -229,7 +249,7 @@ class MainWindow(QMainWindow):
         inputtext=self.urlbar.text()
         if validators.url(inputtext):
             q = QUrl(self.urlbar.text())
-        elif inputtext.find("file:///C:/")==0 or inputtext.find("file:///D:/")==0 or inputtext.find("file:///E:/")==0:
+        elif inputtext.find("file:///")==0:
             q = QUrl(inputtext)  
 
         else:
@@ -261,7 +281,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    
+    app.setApplicationName("Web Plus")
     window = MainWindow()
     window.showMaximized()
     sys.exit(app.exec_())
