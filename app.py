@@ -42,6 +42,38 @@ class AboutDialog(QDialog):
         self.setLayout(layout)
 
 
+class Help(QDialog):
+    def __init__(self, *args, **kwargs):
+        super(Help, self).__init__(*args, **kwargs)
+
+        QBtn = QDialogButtonBox.Ok 
+        self.buttonBox = QDialogButtonBox(QBtn)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+        self.buttonBox.setStyleSheet("background-color:#0088ff;color : #ffffff;")
+        layout = QVBoxLayout()
+
+        title = QLabel("KeyBoard Shotcut")
+        font = title.font()
+        font.setPointSize(20)
+        title.setFont(font)
+
+        layout.addWidget(title)
+        self.setStyleSheet("background-color:#000000;color : #ffffff;") 
+  
+        
+
+        layout.addWidget(QLabel(" Open New Tab--Ctrl+Alt+t \n Open a HTML file--Ctrl+o \n Get information about the version of web plus you are using--Ctrl+Alt+a \n Visit Web Plus's official website--Ctrl+Alt+h \n View Page Source Code--Ctrl+Alt+v"))
+
+        for i in range(0, layout.count()):
+            layout.itemAt(i).setAlignment(Qt.AlignHCenter)
+
+        layout.addWidget(self.buttonBox)
+        self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
+        self.setWindowTitle("Keyboard Shotcut")
+        self.setLayout(layout)
+
+
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
@@ -135,10 +167,16 @@ class MainWindow(QMainWindow):
 
         help_menu = self.menuBar().addMenu("&Help")
         help_menu.setStyleSheet("color:#000000;background-color : #ffffff;")
+
         about_action = QAction(QIcon(os.path.join('images', 'question.png')), "About Web Plus", self)
         about_action.setStatusTip("Find out more about Web Plus")  
         about_action.triggered.connect(self.about)
         help_menu.addAction(about_action)
+
+        keyboard = QAction(QIcon(os.path.join('images', 'keyboard.png')), "Keyboard Shotcut", self)
+        keyboard.setStatusTip("Find out more about Web Plus's Keyboard Shotcuts")  
+        keyboard.triggered.connect(self.keyboardshotcut)
+        help_menu.addAction(keyboard)
 
         navigate_mozarella_action = QAction(QIcon(os.path.join('images', 'lifebuoy.png')),
                                             "Web Plus Homepage", self)
@@ -231,6 +269,10 @@ class MainWindow(QMainWindow):
         dlg = AboutDialog()
         dlg.exec_()
 
+    def keyboardshotcut(self):
+        dlg = Help()
+        dlg.exec_()
+
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open file", "","HTML(*.htm *.html);;")
         if filename=="":
@@ -284,5 +326,4 @@ if __name__ == '__main__':
     app.setApplicationName("Web Plus")
     window = MainWindow()
     window.showMaximized()
-    sys.exit(app.exec_())
-    
+    sys.exit(app.exec_())   
