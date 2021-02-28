@@ -111,7 +111,7 @@ class MainWindow(QMainWindow):
 
         navtb = QToolBar("Navigation")
         navtb.setIconSize(QSize(16, 16))
-        navtb.setStyleSheet("background-color:#ffffff;") 
+        navtb.setStyleSheet("background-color:#ffffff; color:#000000") 
         self.addToolBar(navtb)
 
         back_btn = QAction(QIcon(os.path.join('images', 'arrow-180.png')), "Back", self)
