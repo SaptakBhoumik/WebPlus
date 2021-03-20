@@ -1,7 +1,7 @@
 # WebPlus
 Web Plus is an open source web browser that respects your privacy
 # Screenshot
-![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png?raw=true)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png?raw=true)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled3.png?raw=true)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled4.png?raw=true)
+![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png?raw=true)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png?raw=true)
 # Todo
 (i)Improve the UI <br />
 (ii)Give the option to change to default search engine of Web Plus <br />
