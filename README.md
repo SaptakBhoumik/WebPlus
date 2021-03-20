@@ -9,7 +9,7 @@ Web Plus is an open source web browser that respects your privacy
 (iv)Develop a version that is compatible with macOS and Linux <br />
 (v)Add support for websites with live video and hyperlink with target="_blank" <br />
 # Contribute
-Feel free to Contribute to the code to make it better. Help me to complete my todo list
+Feel free to Contribute to the code to make it better.
 # Contact
 Email: saptakbhoumik@gmail.com <br />
 If you find any bug tell me immediately
