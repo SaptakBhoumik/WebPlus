@@ -5,13 +5,12 @@ from PyQt5.QtWebEngineWidgets import *
 import os
 import sys
 import validators
-from PyQt5.QtGui import QKeySequence
 from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
 
 class AboutDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super(AboutDialog, self).__init__(*args, **kwargs)
-
+        
         QBtn = QDialogButtonBox.Ok 
         self.buttonBox = QDialogButtonBox(QBtn)
         self.buttonBox.accepted.connect(self.accept)
@@ -45,7 +44,7 @@ class AboutDialog(QDialog):
 class Help(QDialog):
     def __init__(self, *args, **kwargs):
         super(Help, self).__init__(*args, **kwargs)
-
+        
         QBtn = QDialogButtonBox.Ok 
         self.buttonBox = QDialogButtonBox(QBtn)
         self.buttonBox.accepted.connect(self.accept)
@@ -94,7 +93,7 @@ class MainWindow(QMainWindow):
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+v'), self)
         self.shortcut_open.activated.connect(self.view)
 
-
+        
         
         self.tabs = QTabWidget()
         self.tabs.setDocumentMode(True)
@@ -103,8 +102,8 @@ class MainWindow(QMainWindow):
         self.tabs.setTabsClosable(True)
         self.tabs.tabCloseRequested.connect(self.close_current_tab)
         self.tabs.setStyleSheet("color:#000000;background-color : #ffffff;") 
-        
         self.setCentralWidget(self.tabs)
+
 
         self.status = QStatusBar()
         self.setStatusBar(self.status)
@@ -193,7 +192,7 @@ class MainWindow(QMainWindow):
         tool_menu.addAction(view)
 
 
-        self.add_new_tab(QUrl('http://www.ecosia.org'), 'Homepage')
+        self.add_new_tab(QUrl('http://www.ecosia.org'), 'UNTITLED')
         
         self.show()
 
@@ -211,7 +210,7 @@ class MainWindow(QMainWindow):
         if path:
             download.setPath(path)
             download.accept()
-    def add_new_tab(self, qurl=None, label="Blank"):
+    def add_new_tab(self, qurl=None, label="UNTITLED"):
 
         if qurl is None:
             qurl = QUrl('http://www.ecosia.org')
@@ -230,6 +229,7 @@ class MainWindow(QMainWindow):
 
         browser.loadFinished.connect(lambda _, i=i, browser=browser:
                                      self.tabs.setTabText(i, browser.page().title()))
+        
     
     
 
