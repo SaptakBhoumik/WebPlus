@@ -224,6 +224,7 @@ class MainWindow(QMainWindow):
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
+
         QtWebEngineWidgets.QWebEngineProfile.defaultProfile().downloadRequested.connect(self.on_downloadRequested)
         
         i = self.tabs.addTab(browser, label)
@@ -235,9 +236,17 @@ class MainWindow(QMainWindow):
 
         browser.loadFinished.connect(lambda _, i=i, browser=browser:
                                      self.tabs.setTabText(i, browser.page().title()))
+
+        
         
     
     def printRequested(self):
+        #if you are viewing this part of my code can you please improve this as I don't think this is the best way to print a page and I can't understand how to fix this
+        url =self.urlbar.text()
+        self.view = QtWebEngineWidgets.QWebEngineView()
+        self.page = QtWebEngineWidgets.QWebEnginePage(self)
+        self.view.setPage(self.page)
+        self.view.load(QtCore.QUrl(url))
         defaultPrinter = QtPrintSupport.QPrinter(
             QtPrintSupport.QPrinterInfo.defaultPrinter())
         dialog = QtPrintSupport.QPrintDialog(defaultPrinter, self)
