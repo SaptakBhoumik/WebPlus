@@ -5,7 +5,7 @@ from PyQt5.QtWebEngineWidgets import *
 import os
 import sys
 import validators
-from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
+from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets, QtPrintSupport
 
 class AboutDialog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -159,6 +159,11 @@ class MainWindow(QMainWindow):
         new_tab_action.triggered.connect(lambda _: self.add_new_tab())
         file_menu.addAction(new_tab_action)
 
+        print_action = QAction(QIcon(os.path.join('images', 'printer.png')), "Print", self)
+        print_action.setStatusTip("Print the webpage")
+        print_action.triggered.connect(self.printRequested)
+        file_menu.addAction(print_action)
+
         open_file_action = QAction(QIcon(os.path.join('images', 'disk--arrow.png')), "Open file...", self)
         open_file_action.setStatusTip("Open from file")
         open_file_action.triggered.connect(self.open_file)
@@ -198,7 +203,9 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
-        
+
+    
+     
     
     @QtCore.pyqtSlot("QWebEngineDownloadItem*")
     def on_downloadRequested(self, download):
@@ -217,9 +224,8 @@ class MainWindow(QMainWindow):
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
-        QtWebEngineWidgets.QWebEngineProfile.defaultProfile().downloadRequested.connect(
-            self.on_downloadRequested
-        )
+        QtWebEngineWidgets.QWebEngineProfile.defaultProfile().downloadRequested.connect(self.on_downloadRequested)
+        
         i = self.tabs.addTab(browser, label)
 
         self.tabs.setCurrentIndex(i)
@@ -231,7 +237,24 @@ class MainWindow(QMainWindow):
                                      self.tabs.setTabText(i, browser.page().title()))
         
     
-    
+    def printRequested(self):
+        defaultPrinter = QtPrintSupport.QPrinter(
+            QtPrintSupport.QPrinterInfo.defaultPrinter())
+        dialog = QtPrintSupport.QPrintDialog(defaultPrinter, self)
+        if dialog.exec():
+            # printer object has to be persistent
+            self._printer = dialog.printer()
+            self.page.print(self._printer, self.printResult)
+
+    def printResult(self, success):
+        if success:
+            QtWidgets.QMessageBox.information(self, 'Print completed', 
+                'Printing has been completed!', QtWidgets.QMessageBox.Ok)
+        else:
+            QtWidgets.QMessageBox.warning(self, 'Print failed', 
+                'Printing has failed!', QtWebEngineWidgets.QMessageBox.Ok)
+            self.printRequested()
+        del self._printer  
 
     def tab_open_doubleclick(self, i):
         if i == -1:  
