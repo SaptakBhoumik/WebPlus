@@ -30,7 +30,7 @@ class AboutDialog(QDialog):
         logo.setPixmap(QPixmap(os.path.join('images', 'ma-icon-128.png')))
         layout.addWidget(logo)
 
-        layout.addWidget(QLabel("Mark 2"))
+        layout.addWidget(QLabel("Mark 3"))
 
         for i in range(0, layout.count()):
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
@@ -62,7 +62,7 @@ class Help(QDialog):
   
         
 
-        layout.addWidget(QLabel(" Open New Tab--Ctrl+Alt+t \n Open a HTML file--Ctrl+o \n Get information about the version of web plus you are using--Ctrl+Alt+a \n Visit Web Plus's official website--Ctrl+Alt+h \n View Page Source Code--Ctrl+Alt+v"))
+        layout.addWidget(QLabel(" Open New Tab--Ctrl+Alt+t \n Open a HTML file--Ctrl+o \n Print the web page--Ctrl+p \n Get information about the version of web plus you are using--Ctrl+Alt+a \n Visit Web Plus's official website--Ctrl+Alt+h \n View Page Source Code--Ctrl+Alt+v "))
 
         for i in range(0, layout.count()):
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
@@ -80,6 +80,9 @@ class MainWindow(QMainWindow):
 
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+t'), self)
         self.shortcut_open.activated.connect(self.add_new_tab)
+        
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+p'), self)
+        self.shortcut_open.activated.connect(self.printRequested)
 
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+o'), self)
         self.shortcut_open.activated.connect(self.open_file)
@@ -197,7 +200,7 @@ class MainWindow(QMainWindow):
         tool_menu.addAction(view)
 
 
-        self.add_new_tab(QUrl('http://www.ecosia.org'), 'UNTITLED')
+        self.add_new_tab(QUrl('https://www.ecosia.org'), 'UNTITLED')
         
         self.show()
 
@@ -220,7 +223,7 @@ class MainWindow(QMainWindow):
     def add_new_tab(self, qurl=None, label="UNTITLED"):
 
         if qurl is None:
-            qurl = QUrl('http://www.ecosia.org')
+            qurl = QUrl('https://www.ecosia.org')
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
@@ -254,16 +257,17 @@ class MainWindow(QMainWindow):
             # printer object has to be persistent
             self._printer = dialog.printer()
             self.page.print(self._printer, self.printResult)
+  
 
     def printResult(self, success):
         if success:
-            QtWidgets.QMessageBox.information(self, 'Print completed', 
-                'Printing has been completed!', QtWidgets.QMessageBox.Ok)
+            pass
         else:
-            QtWidgets.QMessageBox.warning(self, 'Print failed', 
-                'Printing has failed!', QtWebEngineWidgets.QMessageBox.Ok)
-            self.printRequested()
+            QtWidgets.QMessageBox.information(self, 'Print failed', 
+                    'Printing has failed!', QtWidgets.QMessageBox.Ok)
         del self._printer  
+    
+    
 
     def tab_open_doubleclick(self, i):
         if i == -1:  
@@ -294,7 +298,8 @@ class MainWindow(QMainWindow):
     def view(self):
         url =self.urlbar.text()
         url=f"view-source:{url}"
-        self.tabs.currentWidget().setUrl(QUrl(url))
+        self.add_new_tab(QUrl(url), 'UNTITLED')
+    
         
 
     def about(self):
@@ -317,7 +322,7 @@ class MainWindow(QMainWindow):
 
 
     def navigate_home(self):
-        self.tabs.currentWidget().setUrl(QUrl("http://www.ecosia.org"))
+        self.tabs.currentWidget().setUrl(QUrl("https://www.ecosia.org"))
 
     def navigate_to_url(self):
         inputtext=self.urlbar.text()
@@ -344,10 +349,23 @@ class MainWindow(QMainWindow):
         if q.scheme() == 'https':
             # Secure padlock icon
             self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'lock-ssl.png')))
+            self.httpsicon.setStatusTip("Your connection is secure")
 
-        else:
+        elif q.scheme() == 'http':
             # Insecure padlock icon
             self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'lock-nossl.png')))
+            self.httpsicon.setStatusTip("Your connection is not secure")
+        
+        elif q.scheme() == 'file':
+            # file padlock icon
+            self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'file.png')))
+            self.httpsicon.setStatusTip("You are viewing a local or shared file")
+
+        elif q.scheme() == 'view-source':
+            # source code padlock icon
+            self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'code.png')))
+            self.httpsicon.setStatusTip(f"You are viewing the source of a website")
+
 
         self.urlbar.setText(q.toString())
         self.urlbar.setCursorPosition(0)
