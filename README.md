@@ -1,9 +1,9 @@
 # WebPlus 
 
 [![GitHub issues](https://img.shields.io/github/issues/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/issues)
-[![GitHub forks](https://img.shields.io/github/forks/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/network)
+[![GitHub forks](https://img.shields.io/github/forks/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/stargazers)
-[![GitHub license](https://img.shields.io/github/license/SaptakBhoumik/WebPlus)](https://github.com//blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/SaptakBhoumik/WebPlus)](https://github.com/blob/master/LICENSE)
 
 Web Plus is an open source web browser that respects your privacy
 # Screenshot
