@@ -30,8 +30,13 @@ Windows users can download binary releases on [SourceForge](https://sourceforge.
 (iii)Give more features for developers like inspect(like all other modern web browsers) <br />
 (iv)Develop a version that is compatible with macOS and Linux <br />
 (v)Add support for websites with live video and hyperlink with target="_blank" <br />
-# Contribute
-Feel free to Contribute to the code to make it better.
+## How to contribute
+Web Plus is *your* browser. Because it is free software (GPL v3), you can contribute to make it better. New contributors are always welcome, whether you write code, create resources, report bugs, or suggest features.
+
+The browser is written primarily in Python3x and leverages powerful features offered by the PyQt5 framework.
+
+Have a look at the [open issues](https://github.com/SaptakBhoumik/WebPlus/issues) to find a mission that resonates with you.
+
 # Contact
 Email: saptakbhoumik@gmail.com <br />
 If you find any bug tell me immediately
