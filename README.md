@@ -3,6 +3,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/stargazers)
 [![GitHub license](https://img.shields.io/github/license/SaptakBhoumik/WebPlus)](https://www.github.com/SaptakBhoumik/WebPlus/tree/master/LICENSE)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/SaptakBhoumik/WebPlus?include_prereleases)
 [![Coverity pending](https://scan.coverity.com/projects/22908/badge.svg)](https://scan.coverity.com/projects/saptakbhoumik-webplus)
 [![SourceForge](https://img.shields.io/sourceforge/dt/web-plus.svg)](https://sourceforge.net/projects/web-plus/)
 
