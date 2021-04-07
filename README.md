@@ -9,7 +9,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/SaptakBhoumik/WebPlus)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SaptakBhoumik/WebPlus)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fsaptakbhoumik.github.io%2Fweb.github.io%2F)](https://saptakbhoumik.github.io/web.github.io/) 
-[![Coverity pending](https://scan.coverity.com/projects/22908/badge.svg)](https://scan.coverity.com/projects/saptakbhoumik-webplus)
 [![SourceForge](https://img.shields.io/sourceforge/dt/web-plus.svg)](https://sourceforge.net/projects/web-plus/)
 
 Web Plus is an open source web browser that respects your privacy
