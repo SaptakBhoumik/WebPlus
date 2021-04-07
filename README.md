@@ -7,7 +7,6 @@
 ![GitHub Release Date](https://img.shields.io/github/release-date/SaptakBhoumik/WebPlus)
 ![GitHub last commit](https://img.shields.io/github/last-commit/SaptakBhoumik/WebPlus)
 ![GitHub contributors](https://img.shields.io/github/contributors/SaptakBhoumik/WebPlus)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SaptakBhoumik/WebPlus)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fsaptakbhoumik.github.io%2Fweb.github.io%2F)](https://saptakbhoumik.github.io/web.github.io/) 
 [![SourceForge](https://img.shields.io/sourceforge/dt/web-plus.svg)](https://sourceforge.net/projects/web-plus/)
 
