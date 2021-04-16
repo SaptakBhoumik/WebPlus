@@ -200,7 +200,7 @@ class MainWindow(QMainWindow):
         tool_menu.addAction(view)
 
 
-        self.add_new_tab(QUrl('https://www.ecosia.org'), 'UNTITLED')
+        self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
         
         self.show()
 
@@ -223,7 +223,7 @@ class MainWindow(QMainWindow):
     def add_new_tab(self, qurl=None, label="UNTITLED"):
 
         if qurl is None:
-            qurl = QUrl('https://www.ecosia.org')
+            qurl = QUrl('file:///html/home.html')
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
@@ -322,7 +322,7 @@ class MainWindow(QMainWindow):
 
 
     def navigate_home(self):
-        self.tabs.currentWidget().setUrl(QUrl("https://www.ecosia.org"))
+        self.tabs.currentWidget().setUrl(QUrl("file:///html/home.html"))
 
     def navigate_to_url(self):
         inputtext=self.urlbar.text()
@@ -376,4 +376,4 @@ if __name__ == '__main__':
     app.setApplicationName("Web Plus")
     window = MainWindow()
     window.showMaximized()
-    sys.exit(app.exec_())   
+    sys.exit(app.exec_())
