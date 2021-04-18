@@ -144,7 +144,7 @@ class MainWindow(QMainWindow):
 
         self.urlbar = QLineEdit()
         self.urlbar.returnPressed.connect(self.navigate_to_url)
-        self.urlbar.setStyleSheet("font-size: 11pt;border: 1px solid #0088ff;")
+        self.urlbar.setStyleSheet("font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;")
         navtb.addWidget(self.urlbar)
 
         stop_btn = QAction(QIcon(os.path.join('images', 'cross-circle.png')), "Stop", self)
