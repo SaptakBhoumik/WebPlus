@@ -1,4 +1,3 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/22ad5aedbd004f8db380f329553a543c)](https://app.codacy.com/gh/SaptakBhoumik/WebPlus?utm_source=github.com&utm_medium=referral&utm_content=SaptakBhoumik/WebPlus&utm_campaign=Badge_Grade_Settings)
 # WebPlus [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Web%20Plus%20is%20an%20open%20source%20web%20browser%20that%20respects%20your%20privacy&url=https://github.com/SaptakBhoumik/WebPlus&hashtags=free,privacy,webbrowser,browser,web,webplus)
 <p align="center">
 <a href="https://github.com/SaptakBhoumik/WebPlus/"><img width="727" src="https://img.shields.io/badge/Web-Plus-lightgray.svg?logo=appveyor&longCache=true&style=popout"></a>
