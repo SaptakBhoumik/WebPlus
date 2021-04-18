@@ -9,6 +9,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/SaptakBhoumik/WebPlus)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fsaptakbhoumik.github.io%2Fweb.github.io%2F)](https://saptakbhoumik.github.io/web.github.io/) 
 [![SourceForge](https://img.shields.io/sourceforge/dt/web-plus.svg)](https://sourceforge.net/projects/web-plus/)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2240ab9515e041d4a1bfa045233939ac)](https://www.codacy.com/gh/SaptakBhoumik/WebPlus/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SaptakBhoumik/WebPlus&amp;utm_campaign=Badge_Grade)
 
 Web Plus is an open source web browser that respects your privacy
 ## Install
