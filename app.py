@@ -341,7 +341,7 @@ class MainWindow(QMainWindow):
         self.tabs.currentWidget().setUrl(q)
 
     def update_urlbar(self, q, browser=None):
-
+        url=q.toString()
         if browser != self.tabs.currentWidget():
             # If this signal is not from the current tab, ignore
             return
@@ -357,9 +357,14 @@ class MainWindow(QMainWindow):
             self.httpsicon.setStatusTip("Your connection is not secure")
         
         elif q.scheme() == 'file':
-            # file padlock icon
-            self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'file.png')))
-            self.httpsicon.setStatusTip("You are viewing a local or shared file")
+            if url=="file:///html/home.html":
+                # search padlock icon
+                self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'search.png')))
+                self.httpsicon.setStatusTip("Search or type a url")
+            else:
+                # file padlock icon
+                self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'file.png')))
+                self.httpsicon.setStatusTip("You are viewing a local or shared file")
 
         elif q.scheme() == 'view-source':
             # source code padlock icon
