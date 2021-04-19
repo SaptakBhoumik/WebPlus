@@ -371,8 +371,10 @@ class MainWindow(QMainWindow):
             self.httpsicon.setPixmap(QPixmap(os.path.join('images', 'code.png')))
             self.httpsicon.setStatusTip(f"You are viewing the source of a website")
 
-
-        self.urlbar.setText(q.toString())
+        if url=="file:///html/home.html":
+            self.urlbar.setText("")
+        else:
+            self.urlbar.setText(q.toString())
         self.urlbar.setCursorPosition(0)
 
 
