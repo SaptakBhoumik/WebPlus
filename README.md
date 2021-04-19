@@ -24,7 +24,7 @@ You can either compile Web Plus from source or use pre-compiled binaries.
 
 ### From source
 
-To build Web Plus, you will need the following dependencies: **Python3x**. At the root of the directory where the source code is stored, execute these commands:
+To run Web Plus, you will need the following dependencies: **Python3x**. At the root of the directory where the source code is stored, execute these commands:
 
     pip3 install -r requirements.txt
     python3 app.py
