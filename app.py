@@ -73,6 +73,30 @@ class Help(QDialog):
         self.setLayout(layout)
 
 
+class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+    def __init__(self, parent=None):
+        super(WebEnginePage, self).__init__(parent)
+        self.featurePermissionRequested.connect(self.handleFeaturePermissionRequested)
+
+    @QtCore.pyqtSlot(QtCore.QUrl, QtWebEngineWidgets.QWebEnginePage.Feature)
+    def handleFeaturePermissionRequested(self, securityOrigin, feature):
+        title = "Permission Request"
+        questionForFeature = {
+            QtWebEngineWidgets.QWebEnginePage.Geolocation : "Allow {feature} to access your location information?",
+            QtWebEngineWidgets.QWebEnginePage.MediaAudioCapture : "Allow {feature} to access your microphone?",
+            QtWebEngineWidgets.QWebEnginePage.MediaVideoCapture : "Allow {feature} to access your webcam?",
+            QtWebEngineWidgets.QWebEnginePage.MediaAudioVideoCapture : "Allow {feature} to lock your mouse cursor?",
+            QtWebEngineWidgets.QWebEnginePage.DesktopVideoCapture : "Allow {feature} to capture video of your desktop?",
+            QtWebEngineWidgets.QWebEnginePage.DesktopAudioVideoCapture: "Allow {feature} to capture audio and video of your desktop?"
+        }
+        question = questionForFeature.get(feature)
+        if question:
+            question = question.format(feature=securityOrigin.host())
+            if QtWidgets.QMessageBox.question(self.view().window(), title, question) == QtWidgets.QMessageBox.Yes:
+                self.setFeaturePermission(securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionGrantedByUser)
+            else:
+                self.setFeaturePermission(securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionDeniedByUser)
+
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
@@ -226,8 +250,10 @@ class MainWindow(QMainWindow):
             qurl = QUrl('file:///html/home.html')
         
         browser = QWebEngineView()
+        page = WebEnginePage(browser)
+        browser.setPage(page)
         browser.setUrl(qurl)
-
+        page.printRequested.connect(self.printRequested)
         QtWebEngineWidgets.QWebEngineProfile.defaultProfile().downloadRequested.connect(self.on_downloadRequested)
         
         i = self.tabs.addTab(browser, label)
@@ -246,6 +272,8 @@ class MainWindow(QMainWindow):
     def printRequested(self):
         #if you are viewing this part of my code can you please improve this as I don't think this is the best way to print a page and I can't understand how to fix this
         url =self.urlbar.text()
+        if url=="":
+            url='file:///html/home.html'
         self.view = QtWebEngineWidgets.QWebEngineView()
         self.page = QtWebEngineWidgets.QWebEnginePage(self)
         self.view.setPage(self.page)
@@ -297,6 +325,8 @@ class MainWindow(QMainWindow):
 
     def view(self):
         url =self.urlbar.text()
+        if url=="":
+            url="file:///html/home.html"
         url=f"view-source:{url}"
         self.add_new_tab(QUrl(url), 'UNTITLED')
     
@@ -339,6 +369,7 @@ class MainWindow(QMainWindow):
             q.setScheme("http")
 
         self.tabs.currentWidget().setUrl(q)
+
 
     def update_urlbar(self, q, browser=None):
         url=q.toString()
