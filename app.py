@@ -30,7 +30,7 @@ class AboutDialog(QDialog):
         logo.setPixmap(QPixmap(os.path.join('images', 'ma-icon-128.png')))
         layout.addWidget(logo)
 
-        layout.addWidget(QLabel("Mark 3"))
+        layout.addWidget(QLabel("Mark 4"))
 
         for i in range(0, layout.count()):
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
@@ -62,7 +62,7 @@ class Help(QDialog):
   
         
 
-        layout.addWidget(QLabel(" Open New Tab--Ctrl+Alt+t \n Open a HTML file--Ctrl+o \n Print the web page--Ctrl+p \n Get information about the version of web plus you are using--Ctrl+Alt+a \n Visit Web Plus's official website--Ctrl+Alt+h \n View Page Source Code--Ctrl+Alt+v "))
+        layout.addWidget(QLabel(" Open New Tab--Ctrl+Alt+t \n Open a HTML file--Ctrl+o \n Print the web page--Ctrl+p \n Get information about the version of web plus you are using--Ctrl+Alt+a \n Visit Web Plus's official website--Ctrl+Alt+h \n View Page Source Code--Ctrl+Alt+v \n Back to previous page--Ctrl+b \n Forward to next page--Ctrl+f \n Reload page--Ctrl+Alt+r \n Open the home page--Ctrl+h"))
 
         for i in range(0, layout.count()):
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
@@ -120,6 +120,18 @@ class MainWindow(QMainWindow):
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+v'), self)
         self.shortcut_open.activated.connect(self.view)
 
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+b'), self)
+        self.shortcut_open.activated.connect(lambda: self.tabs.currentWidget().back())
+
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+f'), self)
+        self.shortcut_open.activated.connect(lambda: self.tabs.currentWidget().forward())
+     
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+Alt+r'), self)
+        self.shortcut_open.activated.connect(lambda: self.tabs.currentWidget().reload())
+             
+        self.shortcut_open = QShortcut(QKeySequence('Ctrl+h'), self)
+        self.shortcut_open.activated.connect(self.navigate_home)
+
         
         
         self.tabs = QTabWidget()
@@ -156,7 +168,7 @@ class MainWindow(QMainWindow):
         navtb.addAction(reload_btn)
 
         home_btn = QAction(QIcon(os.path.join('images', 'home.png')), "Home", self)
-        home_btn.setStatusTip("Go home")
+        home_btn.setStatusTip("Open the home page")
         home_btn.triggered.connect(self.navigate_home)
         navtb.addAction(home_btn)
 
