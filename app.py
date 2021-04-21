@@ -101,17 +101,7 @@ class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
 
 class MainWindow(QMainWindow):
 
-
     def __init__(self, *args, **kwargs):
-
-        self.file = open('info.txt', 'r')
-        self.res = self.file.read()
-        if self.res == 'darkThemeActivated = True':
-            self.darkThemeActivated = True
-        else:
-            self.darkThemeActivated = False
-
-        self.file.close()
 
         super(MainWindow, self).__init__(*args, **kwargs)
         # defining shotcuts
@@ -268,50 +258,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
 
-        #
-        # STYLESHEETS
-        #
-
-        self.tabs.setStyleSheet("""
-                                QTabWidget {
-                                    top: -1px; 
-                                    background: #ffffff; 
-                                }
-
-                                QTabBar::tab {
-                                    background: #ffffff; 
-                                    padding: 10px;
-                                    color: #000000;
-                                } 
-
-                                QTabBar::tab:selected { 
-                                    background: #ffffff; 
-                                    margin-bottom: -1px; 
-                                }
-                                """)
-        self.navtb.setStyleSheet("""
-                            QToolBar {
-                                background-color: #ffffff; 
-                                color:#000000;
-                            }
-                            QToolBar QToolButton {
-                                background-color: #ffffff;
-                                border-radius: 2px;
-                            }
-                            QToolBar QToolButton:pressed {
-                                background-color: #ffffff;
-                                border-radius: 2px;
-                            }
-                            
-                            """)
-        self.urlbar.setStyleSheet(
-            "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
-        self.file_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
-        self.help_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
-        self.tool_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
-
-        self.menuBar().setStyleSheet(
-            'color:#000000;background-color:#ffffff;border: 1px solid white')
+        self.darkTheme()
 
     @QtCore.pyqtSlot("QWebEngineDownloadItem*")
     def on_downloadRequested(self, download):
@@ -487,7 +434,16 @@ class MainWindow(QMainWindow):
 
     def darkTheme(self):
 
-        if not self.darkThemeActivated:
+        self.file = open('info.txt', 'r')
+        self.res = self.file.read()
+        self.file.close()
+
+        if self.res == 'darkThemeActivated = True':
+            self.status = 'dark'
+        else:
+            self.status = 'light'
+
+        if self.status == 'light':
             self.tabs.setStyleSheet("""
                                     QTabWidget {
                                         top: -1px; 
@@ -495,9 +451,12 @@ class MainWindow(QMainWindow):
                                     }
 
                                     QTabBar::tab {
-                                        background: #000000; 
+                                        background: #242424; 
                                         padding: 10px;
                                         color: #ffffff;
+                                        margin-top: 1pt solid black;
+                                        margin-left: 1pt solid black;
+                                        margin-right: 1pt solid black;
                                     } 
 
                                     QTabBar::tab:selected { 
@@ -522,16 +481,20 @@ class MainWindow(QMainWindow):
                                 """)
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#000000;color:#ffffff")
-            self.file_menu.setStyleSheet("color:#ffffff;background-color:#000000;")
-            self.help_menu.setStyleSheet("color:#ffffff;background-color:#000000;")
-            self.tool_menu.setStyleSheet("color:#ffffff;background-color:#000000;")
+            self.file_menu.setStyleSheet(
+                "color:#ffffff;background-color:#000000;")
+            self.help_menu.setStyleSheet(
+                "color:#ffffff;background-color:#000000;")
+            self.tool_menu.setStyleSheet(
+                "color:#ffffff;background-color:#000000;")
 
             self.menuBar().setStyleSheet(
                 'color:#ffffff;background-color:#000000;border: 1px solid black')
 
             self.darkThemeActivated = True
 
-            self.dark_theme_action = QAction(QIcon(os.path.join('images', 'tick.png')), 'Dark theme', self)
+            self.dark_theme_action = QAction(
+                QIcon(os.path.join('images', 'tick.png')), 'Dark theme', self)
 
             self.write = open('info.txt', 'w')
             self.write.write('darkThemeActivated = True')
@@ -545,9 +508,12 @@ class MainWindow(QMainWindow):
                                     }
 
                                     QTabBar::tab {
-                                        background: #ffffff; 
+                                        background: #ededed; 
                                         padding: 10px;
                                         color: #000000;
+                                        margin-top: 1pt solid black;
+                                        margin-left: 1pt solid black;
+                                        margin-right: 1pt solid black;
                                     } 
 
                                     QTabBar::tab:selected { 
@@ -572,9 +538,12 @@ class MainWindow(QMainWindow):
                                 """)
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
-            self.file_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
-            self.help_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
-            self.tool_menu.setStyleSheet("color:#000000;background-color:#ffffff;")
+            self.file_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
+            self.help_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
+            self.tool_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
 
             self.menuBar().setStyleSheet(
                 'color:#000000;background-color:#ffffff;border: 1px solid white')
