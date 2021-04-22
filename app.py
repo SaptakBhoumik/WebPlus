@@ -26,7 +26,7 @@ class AboutDialog(QDialog):
         title.setFont(font)
 
         layout.addWidget(title)
-        self.setStyleSheet("background-color:#000000;color : #000000;")
+        self.setStyleSheet("background-color:#000000;color : #ffffff;")
 
         logo = QLabel()
         logo.setPixmap(QPixmap(os.path.join('images', 'ma-icon-128.png')))
@@ -52,7 +52,7 @@ class Help(QDialog):
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.reject)
         layout = QVBoxLayout()
-
+        
         title = QLabel("KeyBoard Shortcuts")
         font = title.font()
         font.setPointSize(20)
@@ -69,6 +69,7 @@ class Help(QDialog):
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
         self.setWindowTitle("Keyboard Shortcuts")
         self.setLayout(layout)
+
 
 
 class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
@@ -246,10 +247,12 @@ class MainWindow(QMainWindow):
         view.triggered.connect(self.view)
         self.tool_menu.addAction(view)
 
-        self.dark_theme_action = QAction('Dark theme', self)
-        self.dark_theme_action.setStatusTip('Dark theme')
-        self.dark_theme_action.triggered.connect(self.darkTheme)
-        self.tool_menu.addAction(self.dark_theme_action)
+        self.settings_menu = self.menuBar().addMenu("&Settings")
+        dark_theme_action = QAction(QIcon(os.path.join('images', 'icon.png')),
+                       "Dark theme", self)
+        dark_theme_action.setStatusTip("Enable/Disable dark mode")
+        dark_theme_action.triggered.connect(self.darkTheme)
+        self.settings_menu.addAction(dark_theme_action)
 
         self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
 
@@ -257,8 +260,24 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
-
+        self.switch()
         self.darkTheme()
+    
+
+
+    def switch(self):
+        self.file = open('info.txt', 'r')
+        self.res = self.file.read()
+        self.file.close()
+
+        if self.res == 'darkThemeActivated = True': 
+            self.write = open('info.txt', 'w')
+            self.write.write('darkThemeActivated = False')
+            self.write.close()
+        else:
+            self.write = open('info.txt', 'w')
+            self.write.write('darkThemeActivated = True')
+            self.write.close()
 
     @QtCore.pyqtSlot("QWebEngineDownloadItem*")
     def on_downloadRequested(self, download):
@@ -375,7 +394,9 @@ class MainWindow(QMainWindow):
     def navigate_to_url(self):
         inputtext = self.urlbar.text()
         if validators.url(inputtext):
-            q = QUrl(self.urlbar.text())
+            q = QUrl(inputtext)
+        elif validators.url(f"https://{inputtext}"):
+            q = QUrl(f"https://{inputtext}")
         elif inputtext.find("file:///") == 0:
             q = QUrl(inputtext)
 
@@ -444,23 +465,80 @@ class MainWindow(QMainWindow):
             self.status = 'light'
 
         if self.status == 'light':
+
             self.tabs.setStyleSheet("""
                                     QTabWidget {
-                                        top: -1px; 
+                                        background: #ffffff; 
+                                    }
+
+                                    QTabBar::tab {
+                                        background: #e7eaed; 
+                                        padding: 10px;
+                                        color: #000000;
+                                        margin-top: 1pt solid black;
+                                        margin-left: 1pt solid black;
+                                        margin-right: 1pt solid black;
+                                        border-right-style: 1px solid #000000
+                                        border-left-style: 1px solid #000000
+                                    } 
+
+                                    QTabBar::tab:selected { 
+                                        background: #ffffff; 
+                                        margin-bottom: -1px; 
+                                        color: #000000;
+                                    }
+                                    """)
+            self.navtb.setStyleSheet("""
+                                QToolBar {
+                                    background-color: #ffffff; 
+                                    color:#000000;
+                                }
+                                QToolBar QToolButton {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+                                }
+                                QToolBar QToolButton:pressed {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+
+                                }
+                                
+                                """)
+            self.urlbar.setStyleSheet(
+                "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
+            self.file_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
+            self.help_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
+            self.tool_menu.setStyleSheet(
+                "color:#000000;background-color:#ffffff;")
+
+            self.menuBar().setStyleSheet(
+                'color:#000000;background-color:#ffffff;border: 1px solid white')
+
+
+            self.write = open('info.txt', 'w')
+            self.write.write('darkThemeActivated = True')
+            self.write.close()
+
+        else:
+            self.tabs.setStyleSheet("""
+                                    QTabWidget {
                                         background: #000000; 
                                     }
 
                                     QTabBar::tab {
-                                        background: #242424; 
+                                        background: #000000; 
                                         padding: 10px;
                                         color: #ffffff;
                                         margin-top: 1pt solid black;
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
+                                        border-radius: 4px
                                     } 
 
                                     QTabBar::tab:selected { 
-                                        background: #000000; 
+                                        background: #565656; 
                                         margin-bottom: -1px; 
                                     }
                                     """)
@@ -480,7 +558,7 @@ class MainWindow(QMainWindow):
                                 
                                 """)
             self.urlbar.setStyleSheet(
-                "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#000000;color:#ffffff")
+                "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
             self.file_menu.setStyleSheet(
                 "color:#ffffff;background-color:#000000;")
             self.help_menu.setStyleSheet(
@@ -490,66 +568,7 @@ class MainWindow(QMainWindow):
 
             self.menuBar().setStyleSheet(
                 'color:#ffffff;background-color:#000000;border: 1px solid black')
-
-            self.darkThemeActivated = True
-
-            self.dark_theme_action = QAction(
-                QIcon(os.path.join('images', 'tick.png')), 'Dark theme', self)
-
-            self.write = open('info.txt', 'w')
-            self.write.write('darkThemeActivated = True')
-            self.write.close()
-
-        else:
-            self.tabs.setStyleSheet("""
-                                    QTabWidget {
-                                        top: -1px; 
-                                        background: #ffffff; 
-                                    }
-
-                                    QTabBar::tab {
-                                        background: #ededed; 
-                                        padding: 10px;
-                                        color: #000000;
-                                        margin-top: 1pt solid black;
-                                        margin-left: 1pt solid black;
-                                        margin-right: 1pt solid black;
-                                    } 
-
-                                    QTabBar::tab:selected { 
-                                        background: #ffffff; 
-                                        margin-bottom: -1px; 
-                                    }
-                                    """)
-            self.navtb.setStyleSheet("""
-                                QToolBar {
-                                    background-color: #ffffff; 
-                                    color:#000000;
-                                }
-                                QToolBar QToolButton {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
-                                }
-                                QToolBar QToolButton:pressed {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
-                                }
-                                
-                                """)
-            self.urlbar.setStyleSheet(
-                "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
-            self.file_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-            self.help_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-            self.tool_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-
-            self.menuBar().setStyleSheet(
-                'color:#000000;background-color:#ffffff;border: 1px solid white')
-
-            self.darkThemeActivated = False
-
+            
             self.write = open('info.txt', 'w')
             self.write.write('darkThemeActivated = False')
             self.write.close()
