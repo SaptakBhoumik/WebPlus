@@ -1,1 +1,1 @@
-darkThemeActivated = True
+darkThemeActivated = False
