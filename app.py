@@ -397,7 +397,7 @@ class MainWindow(QMainWindow):
             q = QUrl(inputtext)
         elif validators.url(f"https://{inputtext}"):
             q = QUrl(f"https://{inputtext}")
-        elif inputtext.find("file:///") == 0:
+        elif inputtext.find("file:///") == 0 or inputtext.find("view-source:") == 0 :
             q = QUrl(inputtext)
 
         else:
@@ -475,16 +475,16 @@ class MainWindow(QMainWindow):
                                         background: #e7eaed; 
                                         padding: 10px;
                                         color: #000000;
-                                        margin-top: 1pt solid black;
+                                        margin-top: -1px;
+                                        margin-bottom: -1px; 
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border-right-style: 1px solid #000000
-                                        border-left-style: 1px solid #000000
+                                        border: 1px solid #000000;
+                                        border-radius: 4px;
                                     } 
 
                                     QTabBar::tab:selected { 
-                                        background: #ffffff; 
-                                        margin-bottom: -1px; 
+                                        background: #ffffff;  
                                         color: #000000;
                                     }
                                     """)
@@ -531,10 +531,11 @@ class MainWindow(QMainWindow):
                                         background: #000000; 
                                         padding: 10px;
                                         color: #ffffff;
-                                        margin-top: 1pt solid black;
+                                        margin-top: -1px;
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border-radius: 4px
+                                        border: 1px solid #ffffff;
+                                        border-radius: 4px;
                                     } 
 
                                     QTabBar::tab:selected { 
