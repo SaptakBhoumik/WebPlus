@@ -532,6 +532,7 @@ class MainWindow(QMainWindow):
                                         padding: 10px;
                                         color: #ffffff;
                                         margin-top: -1px;
+                                        margin-bottom: -1px;
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
                                         border: 1px solid #ffffff;
@@ -539,8 +540,7 @@ class MainWindow(QMainWindow):
                                     } 
 
                                     QTabBar::tab:selected { 
-                                        background: #565656; 
-                                        margin-bottom: -1px; 
+                                        background: #565656;  
                                     }
                                     """)
             self.navtb.setStyleSheet("""
