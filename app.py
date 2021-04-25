@@ -471,6 +471,10 @@ class MainWindow(QMainWindow):
                                         background: #ffffff; 
                                     }
 
+                                    QTabBar {
+                                        background: #e7eaed; 
+                                    }
+
                                     QTabBar::tab {
                                         background: #e7eaed; 
                                         padding: 10px;
@@ -481,6 +485,10 @@ class MainWindow(QMainWindow):
                                         margin-right: 1pt solid black;
                                         border: 1px solid #000000;
                                         border-radius: 4px;
+                                    } 
+
+                                    QTabBar::tab:hover { 
+                                        background: #f0f0f0;  
                                     } 
 
                                     QTabBar::tab:selected { 
@@ -526,6 +534,9 @@ class MainWindow(QMainWindow):
                                     QTabWidget {
                                         background: #000000; 
                                     }
+                                    QTabBar {
+                                        background: #000000; 
+                                    }
 
                                     QTabBar::tab {
                                         background: #000000; 
@@ -539,9 +550,14 @@ class MainWindow(QMainWindow):
                                         border-radius: 4px;
                                     } 
 
-                                    QTabBar::tab:selected { 
-                                        background: #565656;  
+                                    QTabBar::tab:hover { 
+                                        background: #414141;  
                                     }
+                                    
+                                    QTabBar::tab:selected { 
+                                        background: #979797;  
+                                    }
+
                                     """)
             self.navtb.setStyleSheet("""
                                 QToolBar {
@@ -561,14 +577,14 @@ class MainWindow(QMainWindow):
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
             self.file_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000;")
+                "color:#ffffff;background-color:#000000; ")
             self.help_menu.setStyleSheet(
                 "color:#ffffff;background-color:#000000;")
             self.tool_menu.setStyleSheet(
                 "color:#ffffff;background-color:#000000;")
-
             self.menuBar().setStyleSheet(
                 'color:#ffffff;background-color:#000000;border: 1px solid black')
+
             
             self.write = open('info.txt', 'w')
             self.write.write('darkThemeActivated = False')
