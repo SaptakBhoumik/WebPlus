@@ -11,4 +11,4 @@
 
 ## Reporting a Vulnerability
 
-To report a Vulnerability please create a issue
+To report a Vulnerability please create a issue or contact me directly via email. Email id- saptakbhoumik@gmail.com
