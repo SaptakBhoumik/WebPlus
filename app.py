@@ -307,11 +307,17 @@ class MainWindow(QMainWindow):
 
         self.tabs.setCurrentIndex(i)
 
+        self.tabs.setTabIcon(i, browser.page().icon())
+
         browser.urlChanged.connect(lambda qurl, browser=browser:
                                    self.update_urlbar(qurl, browser))
 
         browser.loadFinished.connect(lambda _, i=i, browser=browser:
                                      self.tabs.setTabText(i, browser.page().title()))
+
+        browser.iconChanged.connect(lambda _, i=i, browser=browser:
+                                     self.tabs.setTabIcon(i, browser.icon()))
+
 
     def printRequested(self):
         # if you are viewing this part of my code can you please improve this as I don't think this is the best way to print a page and I can't understand how to fix this
@@ -396,7 +402,7 @@ class MainWindow(QMainWindow):
         if validators.url(inputtext):
             q = QUrl(inputtext)
         elif validators.url(f"https://{inputtext}"):
-            q = QUrl(f"https://{inputtext}")
+            q = QUrl(f"http://{inputtext}")
         elif inputtext.find("file:///") == 0 or inputtext.find("view-source:") == 0 :
             q = QUrl(inputtext)
 
@@ -408,6 +414,7 @@ class MainWindow(QMainWindow):
             q.setScheme("http")
 
         self.tabs.currentWidget().setUrl(q)
+        
 
     def update_urlbar(self, q, browser=None):
         url = q.toString()
@@ -452,6 +459,7 @@ class MainWindow(QMainWindow):
         else:
             self.urlbar.setText(q.toString())
         self.urlbar.setCursorPosition(0)
+        
 
     def darkTheme(self):
 
