@@ -6,6 +6,7 @@ import os
 import sys
 import validators
 from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets, QtPrintSupport
+import json
 
 
 class AboutDialog(QDialog):
@@ -264,20 +265,25 @@ class MainWindow(QMainWindow):
         self.darkTheme()
     
 
-
     def switch(self):
-        self.file = open('info.txt', 'r')
-        self.res = self.file.read()
-        self.file.close()
+        with open("config.json", 'r') as f:
+            data = json.load(f)
+        self.res=data["theme"]
 
-        if self.res == 'darkThemeActivated = True': 
-            self.write = open('info.txt', 'w')
-            self.write.write('darkThemeActivated = False')
-            self.write.close()
+        if self.res == 'light': 
+            with open('config.json', 'r+') as f:
+                data = json.load(f)
+                data['theme'] = "dark" 
+                f.seek(0)
+                json.dump(data, f, indent=4)
+                f.truncate()
         else:
-            self.write = open('info.txt', 'w')
-            self.write.write('darkThemeActivated = True')
-            self.write.close()
+            with open('config.json', 'r+') as f:
+                data = json.load(f)
+                data['theme'] = "light" 
+                f.seek(0)
+                json.dump(data, f, indent=4)
+                f.truncate()
 
     @QtCore.pyqtSlot("QWebEngineDownloadItem*")
     def on_downloadRequested(self, download):
@@ -462,12 +468,11 @@ class MainWindow(QMainWindow):
         
 
     def darkTheme(self):
+        with open("config.json", 'r') as f:
+	        data = json.load(f)
+        self.res=data["theme"]
 
-        self.file = open('info.txt', 'r')
-        self.res = self.file.read()
-        self.file.close()
-
-        if self.res == 'darkThemeActivated = True':
+        if self.res == 'dark':
             self.status = 'dark'
         else:
             self.status = 'light'
@@ -533,9 +538,12 @@ class MainWindow(QMainWindow):
                 'color:#000000;background-color:#ffffff;border: 1px solid white')
 
 
-            self.write = open('info.txt', 'w')
-            self.write.write('darkThemeActivated = True')
-            self.write.close()
+            with open('config.json', 'r+') as f:
+                data = json.load(f)
+                data['theme'] = "dark" 
+                f.seek(0)
+                json.dump(data, f, indent=4)
+                f.truncate()
 
         else:
             self.tabs.setStyleSheet("""
@@ -594,9 +602,12 @@ class MainWindow(QMainWindow):
                 'color:#ffffff;background-color:#000000;border: 1px solid black')
 
             
-            self.write = open('info.txt', 'w')
-            self.write.write('darkThemeActivated = False')
-            self.write.close()
+            with open('config.json', 'r+') as f:
+                data = json.load(f)
+                data['theme'] = "light" 
+                f.seek(0)
+                json.dump(data, f, indent=4)
+                f.truncate()
 
 
 if __name__ == '__main__':
