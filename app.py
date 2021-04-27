@@ -181,8 +181,6 @@ class MainWindow(QMainWindow):
         home_btn.triggered.connect(self.navigate_home)
         self.navtb.addAction(home_btn)
 
-        self.navtb.addSeparator()
-
         self.httpsicon = QLabel()
         self.httpsicon.setPixmap(
             QPixmap(os.path.join('images', 'lock-nossl.png')))
@@ -600,7 +598,6 @@ class MainWindow(QMainWindow):
                 "color:#ffffff;background-color:#000000;")
             self.menuBar().setStyleSheet(
                 'color:#ffffff;background-color:#000000;border: 1px solid black')
-
             
             with open('config.json', 'r+') as f:
                 data = json.load(f)
