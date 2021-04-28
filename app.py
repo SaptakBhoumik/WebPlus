@@ -212,7 +212,7 @@ class MainWindow(QMainWindow):
         self.urlbar = QLineEdit()
         # self.urlbar.setStyleSheet("background-color : none; border-radius : None")
         self.urlbar.returnPressed.connect(self.navigate_to_url)
-        self.urlbar.setFixedWidth(1640)
+        #self.urlbar.setFixedWidth(1640)
         self.urlbar.setFixedHeight(28)
         self.navtb.addWidget(self.urlbar)
 
@@ -588,8 +588,8 @@ class MainWindow(QMainWindow):
             self.statusBar().setStyleSheet("background-color : #ffffff ; color : #000000")
 
 
-            # self.urlbar.setStyleSheet(
-            #     "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
+            self.urlbar.setStyleSheet(
+               "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
             self.file_menu.setStyleSheet(
                 "color:#000000;background-color:#ffffff;")
             self.help_menu.setStyleSheet(
@@ -674,8 +674,8 @@ class MainWindow(QMainWindow):
 
             self.statusBar().setStyleSheet("background-color : #000000 ; color : #ffffff")
 
-            # self.urlbar.setStyleSheet(
-            #     "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
+            self.urlbar.setStyleSheet(
+                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
             self.file_menu.setStyleSheet(
                 "color:#ffffff;background-color:#000000; ")
             self.help_menu.setStyleSheet(
