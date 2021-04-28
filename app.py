@@ -203,14 +203,16 @@ class MainWindow(QMainWindow):
         stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
         self.navtb.addAction(stop_btn)
 
-        self.httpsicon = QLabel()
-        self.httpsicon.setFixedHeight(30)
-        self.httpsicon.setPixmap(
-            QPixmap(os.path.join('images', 'lock-nossl.png')))
-        self.navtb.addWidget(self.httpsicon)
+        # self.httpsicon = QLabel()
+        # self.httpsicon.setFixedHeight(30)
+        # self.httpsicon.setPixmap(
+        #     QPixmap(os.path.join('images', 'lock-nossl.png')))
+        # self.navtb.addWidget(self.httpsicon)
 
         self.urlbar = QLineEdit()
+        # self.urlbar.setStyleSheet("background-color : none; border-radius : None")
         self.urlbar.returnPressed.connect(self.navigate_to_url)
+        #self.urlbar.setFixedWidth(1640)
         self.urlbar.setFixedHeight(28)
         self.navtb.addWidget(self.urlbar)
 
@@ -465,37 +467,37 @@ class MainWindow(QMainWindow):
             # If this signal is not from the current tab, ignore
             return
 
-        if q.scheme() == 'https':
-            # Secure padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'lock-ssl.png')))
-            self.httpsicon.setStatusTip("Your connection is secure")
+        # if q.scheme() == 'https':
+        #     # Secure padlock icon
+        #     self.httpsicon.setPixmap(
+        #         QPixmap(os.path.join('images', 'lock-ssl.png')))
+        #     self.httpsicon.setStatusTip("Your connection is secure")
 
-        elif q.scheme() == 'http':
-            # Insecure padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'lock-nossl.png')))
-            self.httpsicon.setStatusTip("Your connection is not secure")
+        # elif q.scheme() == 'http':
+        #     # Insecure padlock icon
+        #     self.httpsicon.setPixmap(
+        #         QPixmap(os.path.join('images', 'lock-nossl.png')))
+        #     self.httpsicon.setStatusTip("Your connection is not secure")
 
-        elif q.scheme() == 'file':
-            if url == "file:///html/home.html":
-                # search padlock icon
-                self.httpsicon.setPixmap(
-                    QPixmap(os.path.join('images', 'search.png')))
-                self.httpsicon.setStatusTip("Search or type a url")
-            else:
-                # file padlock icon
-                self.httpsicon.setPixmap(
-                    QPixmap(os.path.join('images', 'file.png')))
-                self.httpsicon.setStatusTip(
-                    "You are viewing a local or shared file")
+        # elif q.scheme() == 'file':
+        #     if url == "file:///html/home.html":
+        #         # search padlock icon
+        #         self.httpsicon.setPixmap(
+        #             QPixmap(os.path.join('images', 'search.png')))
+        #         self.httpsicon.setStatusTip("Search or type a url")
+        #     else:
+        #         # file padlock icon
+        #         self.httpsicon.setPixmap(
+        #             QPixmap(os.path.join('images', 'file.png')))
+        #         self.httpsicon.setStatusTip(
+        #             "You are viewing a local or shared file")
 
-        elif q.scheme() == 'view-source':
-            # source code padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'code.png')))
-            self.httpsicon.setStatusTip(
-                f"You are viewing the source of a website")
+        # elif q.scheme() == 'view-source':
+        #     # source code padlock icon
+        #     self.httpsicon.setPixmap(
+        #         QPixmap(os.path.join('images', 'code.png')))
+        #     self.httpsicon.setStatusTip(
+        #         f"You are viewing the source of a website")
 
         if url == "file:///html/home.html":
             self.urlbar.setText("")
@@ -520,11 +522,9 @@ class MainWindow(QMainWindow):
                                     QTabWidget {
                                         background: #ffffff; 
                                     }
-
                                     QTabBar {
                                         background: #e7eaed; 
                                     }
-
                                     QTabBar::tab {
                                         background: #e7eaed; 
                                         padding: 10px;
@@ -536,11 +536,9 @@ class MainWindow(QMainWindow):
                                         border: 1px solid #000000;
                                         border-radius: 4px;
                                     } 
-
                                     QTabBar::tab:hover { 
                                         background: #f0f0f0;  
                                     } 
-
                                     QTabBar::tab:selected { 
                                         background: #ffffff;  
                                         color: #000000;
@@ -558,7 +556,6 @@ class MainWindow(QMainWindow):
                                 QToolBar QToolButton:pressed {
                                     background-color: #ffffff;
                                     border-radius: 2px;
-
                                 }
                                 
                                 """)
@@ -577,7 +574,6 @@ class MainWindow(QMainWindow):
                                 QToolBar QToolButton:pressed {
                                     background-color: #ffffff;
                                     border-radius: 2px;
-
                                 }
                                 
                                 """)
@@ -614,7 +610,6 @@ class MainWindow(QMainWindow):
                                     QTabBar {
                                         background: #000000; 
                                     }
-
                                     QTabBar::tab {
                                         background: #000000; 
                                         padding: 10px;
@@ -626,7 +621,6 @@ class MainWindow(QMainWindow):
                                         border: 1px solid #ffffff;
                                         border-radius: 4px;
                                     } 
-
                                     QTabBar::tab:hover { 
                                         background: #414141;  
                                     }
@@ -634,7 +628,6 @@ class MainWindow(QMainWindow):
                                     QTabBar::tab:selected { 
                                         background: #979797;  
                                     }
-
                                     """)
             self.navtb.setStyleSheet("""
                                 QToolBar {
@@ -665,7 +658,6 @@ class MainWindow(QMainWindow):
                                     QToolBar QToolButton:pressed {
                                         background-color: #ffffff;
                                         border-radius: 2px;
-
                                     }
                                     
                                     """)
