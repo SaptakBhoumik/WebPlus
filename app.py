@@ -155,6 +155,17 @@ class MainWindow(QMainWindow):
         self.status = QStatusBar()
         self.setStatusBar(self.status)
 
+        self.nav = QToolBar("Navigation")
+        self.nav.setOrientation(QtCore.Qt.Vertical)
+        self.nav.setIconSize(QSize(16, 16))
+        self.addToolBar(QtCore.Qt.RightToolBarArea, self.nav)
+
+        add = QAction(
+            QIcon(os.path.join('images', 'ui-tab--plus')), "Add new tab", self)
+        add.setStatusTip("Add new tab")
+        add.triggered.connect(lambda _: self.add_new_tab())
+        self.nav.addAction(add)
+
         self.navtb = QToolBar("Navigation")
         self.navtb.setIconSize(QSize(16, 16))
         self.addToolBar(self.navtb)
@@ -257,16 +268,6 @@ class MainWindow(QMainWindow):
         self.settings_menu.addAction(dark_theme_action)
 
         
-        self.nav = QToolBar("Navigation")
-        self.nav.setOrientation(QtCore.Qt.Vertical)
-        self.nav.setIconSize(QSize(16, 16))
-        self.addToolBar(QtCore.Qt.RightToolBarArea, self.nav)
-
-        add = QAction(
-            QIcon(os.path.join('images', 'ui-tab--plus')), "Add new tab", self)
-        add.setStatusTip("Add new tab")
-        add.triggered.connect(lambda _: self.add_new_tab())
-        self.nav.addAction(add)
 
         self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
 
@@ -542,7 +543,8 @@ class MainWindow(QMainWindow):
 
             self.nav.setStyleSheet("""
                                 QToolBar {
-                                    background-color: #ffffff; 
+                                    background-color : #ffffff; 
+                                    margin-bottom: -1px;
                                     color:#000000;
                                 }
                                 QToolBar QToolButton {
@@ -556,7 +558,11 @@ class MainWindow(QMainWindow):
                                 }
                                 
                                 """)
-                                
+
+
+            self.statusBar().setStyleSheet("background-color : #ffffff ; color : #000000")
+
+
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
             self.file_menu.setStyleSheet(
@@ -623,23 +629,25 @@ class MainWindow(QMainWindow):
                                 
                                 """)
             
-
             self.nav.setStyleSheet("""
-                                QToolBar {
-                                    background-color: #ffffff; 
-                                    color:#000000;
-                                }
-                                QToolBar QToolButton {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
-                                }
-                                QToolBar QToolButton:pressed {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
+                                    QToolBar {
+                                        background-color : #ffffff; 
+                                        margin-bottom: -1px;
+                                        color:#000000;
+                                    }
+                                    QToolBar QToolButton {
+                                        background-color: #ffffff;
+                                        border-radius: 2px;
+                                    }
+                                    QToolBar QToolButton:pressed {
+                                        background-color: #ffffff;
+                                        border-radius: 2px;
 
-                                }
-                                
-                                """)
+                                    }
+                                    
+                                    """)
+
+            self.statusBar().setStyleSheet("background-color : #000000 ; color : #ffffff")
 
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
