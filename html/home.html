@@ -14,6 +14,9 @@
             --black: #000000;
             --msuGreen: #000000;
             --gray: #ffffff;
+            --lighGray: #38383d;
+            --darkGray: #2a2a2e;
+            --lighterGray:#5f5f63;
         }
         
         * {
@@ -102,35 +105,36 @@
             --navLinkHoverBg: var(--paleSpringBud);
             --mainBg: var(--goldCrayola);
             --fontColor: var(--black);
+            --inputBg: var(--white);
+            --borderColor: var(--white)
         }
         
         .dark-theme {
-            --themeDropDownBg: var(--msuGreen);
-            --themeIconBorderColor: var(--richBlackForeground);
-            --navBg: var(--richBlackForeground);
-            --navLinkHoverBg: var(--msuGreen);
-            --mainBg: var(--msuGreen);
+            --themeDropDownBg: var(--darkGray);
+            --themeIconBorderColor: var(--darkGray);
+            --navBg: var(--darkGray);
+            --navLinkHoverBg: var(--darkGray);
+            --mainBg: var(--darkGray);
             --fontColor: var(--white);
+            --inputBg: var(--lighGray);
+            --borderColor: var(--lighterGray)
         }
         
         input[type=search] {
-            border-radius: 25px;
-            width: 50%;
+            border-radius: 3px;
+            border: solid 1px var(--borderColor);
+            box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15);
+            width: 35%;
             padding: 12px 14px 12px 14px;
             box-sizing: border-box;
-            background-color: white;
-            color: black;
+            background-color: var(--inputBg);
+            color: var(--fontColor);
             outline: none;
             margin: 0;
-            border: 2px solid #0f5c6e;
         }
         
-        h1 {
-            text-align: center;
-            color: blue;
-            font-size: 5.5em;
-            transition: 0.5s;
-            font-family: Arial, Helvetica, sans-serif;
+        .search-engine-logo {
+            width: 10%;
         }
     </style>
 </head>
@@ -152,10 +156,16 @@
         </nav>
     </header>
 
-    <h1>Search</h1>
-    <div align="center"><br><br><br>
+    <div align="center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <img class="search-engine-logo" src="../images/searchEngineLogos/ecosiaBig.png" alt="">
+        <br>
+        <br>
         <form action="https://www.ecosia.org/search" method="GET">
-            <input data-v-126b1b98="" placeholder="Search..." aria-label="" type="search" name="q" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus="autofocus" required="required" data-test-id="search-form-input" class="input">
+            <input data-v-126b1b98="" placeholder="Search the Web..." aria-label="" type="search" name="q" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus="autofocus" required="required" data-test-id="search-form-input" class="input">
         </form>
     </div>
 
