@@ -2,4 +2,4 @@ Web Plus is your browser. Because it is free software (GPL v3), you can contribu
 
 The browser is written primarily in Python3x and leverages powerful features offered by the PyQt5 framework.
 
-Have a look at the open issues to find a mission that resonates with you or add features that you want
+Have a look at the open issues to find a mission that resonates with you or the add features that you want
