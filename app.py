@@ -203,16 +203,14 @@ class MainWindow(QMainWindow):
         stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
         self.navtb.addAction(stop_btn)
 
-        # self.httpsicon = QLabel()
-        # self.httpsicon.setFixedHeight(30)
-        # self.httpsicon.setPixmap(
-        #     QPixmap(os.path.join('images', 'lock-nossl.png')))
-        # self.navtb.addWidget(self.httpsicon)
+        self.httpsicon = QLabel()
+        self.httpsicon.setFixedHeight(30)
+        self.httpsicon.setPixmap(
+            QPixmap(os.path.join('images', 'lock-nossl.png')))
+        self.navtb.addWidget(self.httpsicon)
 
         self.urlbar = QLineEdit()
-        # self.urlbar.setStyleSheet("background-color : none; border-radius : None")
         self.urlbar.returnPressed.connect(self.navigate_to_url)
-        #self.urlbar.setFixedWidth(1640)
         self.urlbar.setFixedHeight(28)
         self.navtb.addWidget(self.urlbar)
 
@@ -467,37 +465,37 @@ class MainWindow(QMainWindow):
             # If this signal is not from the current tab, ignore
             return
 
-        # if q.scheme() == 'https':
-        #     # Secure padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'lock-ssl.png')))
-        #     self.httpsicon.setStatusTip("Your connection is secure")
+        if q.scheme() == 'https':
+            # Secure padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'lock-ssl.png')))
+            self.httpsicon.setStatusTip("Your connection is secure")
 
-        # elif q.scheme() == 'http':
-        #     # Insecure padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'lock-nossl.png')))
-        #     self.httpsicon.setStatusTip("Your connection is not secure")
+        elif q.scheme() == 'http':
+            # Insecure padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'lock-nossl.png')))
+            self.httpsicon.setStatusTip("Your connection is not secure")
 
-        # elif q.scheme() == 'file':
-        #     if url == "file:///html/home.html":
-        #         # search padlock icon
-        #         self.httpsicon.setPixmap(
-        #             QPixmap(os.path.join('images', 'search.png')))
-        #         self.httpsicon.setStatusTip("Search or type a url")
-        #     else:
-        #         # file padlock icon
-        #         self.httpsicon.setPixmap(
-        #             QPixmap(os.path.join('images', 'file.png')))
-        #         self.httpsicon.setStatusTip(
-        #             "You are viewing a local or shared file")
+        elif q.scheme() == 'file':
+            if url == "file:///html/home.html":
+                # search padlock icon
+                self.httpsicon.setPixmap(
+                    QPixmap(os.path.join('images', 'search.png')))
+                self.httpsicon.setStatusTip("Search or type a url")
+            else:
+                # file padlock icon
+                self.httpsicon.setPixmap(
+                    QPixmap(os.path.join('images', 'file.png')))
+                self.httpsicon.setStatusTip(
+                    "You are viewing a local or shared file")
 
-        # elif q.scheme() == 'view-source':
-        #     # source code padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'code.png')))
-        #     self.httpsicon.setStatusTip(
-        #         f"You are viewing the source of a website")
+        elif q.scheme() == 'view-source':
+            # source code padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'code.png')))
+            self.httpsicon.setStatusTip(
+                f"You are viewing the source of a website")
 
         if url == "file:///html/home.html":
             self.urlbar.setText("")
@@ -535,7 +533,8 @@ class MainWindow(QMainWindow):
                                         margin-bottom: -1px; 
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border-top: 2px solid #000;
+                                        border: 1px solid #000000;
+                                        border-radius: 4px;
                                     } 
 
                                     QTabBar::tab:hover { 
@@ -588,7 +587,7 @@ class MainWindow(QMainWindow):
 
 
             self.urlbar.setStyleSheet(
-               "font-size: 10pt;border: 1px solid #0088ff;border-radius: 3px;background-color:#ffffff;color:#000000;padding: 4px 6px 4px 6px;")
+               "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
             self.file_menu.setStyleSheet(
                 "color:#000000;background-color:#ffffff;")
             self.help_menu.setStyleSheet(
@@ -610,21 +609,22 @@ class MainWindow(QMainWindow):
         else:
             self.tabs.setStyleSheet("""
                                     QTabWidget {
-                                        background: #2a2a2e; 
+                                        background: #000000; 
                                     }
                                     QTabBar {
-                                        background: #2a2a2e; 
+                                        background: #000000; 
                                     }
 
                                     QTabBar::tab {
-                                        background: #2a2a2e; 
+                                        background: #000000; 
                                         padding: 10px;
                                         color: #ffffff;
                                         margin-top: -1px;
                                         margin-bottom: -1px;
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border-top: 2px solid #fff;
+                                        border: 1px solid #ffffff;
+                                        border-radius: 4px;
                                     } 
 
                                     QTabBar::tab:hover { 
@@ -638,15 +638,15 @@ class MainWindow(QMainWindow):
                                     """)
             self.navtb.setStyleSheet("""
                                 QToolBar {
-                                    background-color: #2a2a2e; 
+                                    background-color: #000000; 
                                     color:#ffffff;
                                 }
                                 QToolBar QToolButton {
-                                    background-color: #2a2a2e;
+                                    background-color: #000000;
                                     border-radius: 2px;
                                 }
                                 QToolBar QToolButton:pressed {
-                                    background-color: #2a2a2e;
+                                    background-color: #000000;
                                     border-radius: 2px;
                                 }
                                 
@@ -670,18 +670,18 @@ class MainWindow(QMainWindow):
                                     
                                     """)
 
-            self.statusBar().setStyleSheet("background-color : #2a2a2e ; color : #ffffff")
+            self.statusBar().setStyleSheet("background-color : #000000 ; color : #ffffff")
 
             self.urlbar.setStyleSheet(
-                 "font-size: 10pt;border: 1px solid #0088ff;border-radius: 3px;background-color:#38383d;color:#000000;padding: 4px 6px 4px 6px;")
+                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
             self.file_menu.setStyleSheet(
-                "color:#ffffff;background-color:#2a2a2e; ")
+                "color:#ffffff;background-color:#000000; ")
             self.help_menu.setStyleSheet(
-                "color:#ffffff;background-color:#2a2a2e;")
+                "color:#ffffff;background-color:#000000;")
             self.tool_menu.setStyleSheet(
-                "color:#ffffff;background-color:#2a2a2e;")
+                "color:#ffffff;background-color:#000000;")
             self.menuBar().setStyleSheet(
-                'color:#ffffff;background-color:#2a2a2e;border: 1px solid black')
+                'color:#ffffff;background-color:#000000;border: 1px solid black')
             
             with open('config.json', 'r+') as f:
                 data = json.load(f)
