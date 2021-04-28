@@ -141,6 +141,8 @@ class MainWindow(QMainWindow):
         self.shortcut_open = QShortcut(QKeySequence('Ctrl+h'), self)
         self.shortcut_open.activated.connect(self.navigate_home)
 
+        
+        
         self.tabs = QTabWidget()
         self.tabs.setDocumentMode(True)
         self.tabs.tabBarDoubleClicked.connect(self.tab_open_doubleclick)
@@ -148,6 +150,7 @@ class MainWindow(QMainWindow):
         self.tabs.setTabsClosable(True)
         self.tabs.tabCloseRequested.connect(self.close_current_tab)
         self.setCentralWidget(self.tabs)
+
 
         self.status = QStatusBar()
         self.setStatusBar(self.status)
@@ -252,6 +255,18 @@ class MainWindow(QMainWindow):
         dark_theme_action.setStatusTip("Enable/Disable dark mode")
         dark_theme_action.triggered.connect(self.darkTheme)
         self.settings_menu.addAction(dark_theme_action)
+
+        
+        self.nav = QToolBar("Navigation")
+        self.nav.setOrientation(QtCore.Qt.Vertical)
+        self.nav.setIconSize(QSize(16, 16))
+        self.addToolBar(QtCore.Qt.RightToolBarArea, self.nav)
+
+        add = QAction(
+            QIcon(os.path.join('images', 'ui-tab--plus')), "Add new tab", self)
+        add.setStatusTip("Add new tab")
+        add.triggered.connect(lambda _: self.add_new_tab())
+        self.nav.addAction(add)
 
         self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
 
@@ -523,6 +538,25 @@ class MainWindow(QMainWindow):
                                 }
                                 
                                 """)
+
+
+            self.nav.setStyleSheet("""
+                                QToolBar {
+                                    background-color: #ffffff; 
+                                    color:#000000;
+                                }
+                                QToolBar QToolButton {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+                                }
+                                QToolBar QToolButton:pressed {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+
+                                }
+                                
+                                """)
+                                
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
             self.file_menu.setStyleSheet(
@@ -588,6 +622,25 @@ class MainWindow(QMainWindow):
                                 }
                                 
                                 """)
+            
+
+            self.nav.setStyleSheet("""
+                                QToolBar {
+                                    background-color: #ffffff; 
+                                    color:#000000;
+                                }
+                                QToolBar QToolButton {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+                                }
+                                QToolBar QToolButton:pressed {
+                                    background-color: #ffffff;
+                                    border-radius: 2px;
+
+                                }
+                                
+                                """)
+
             self.urlbar.setStyleSheet(
                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
             self.file_menu.setStyleSheet(
