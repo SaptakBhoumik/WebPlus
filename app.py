@@ -535,8 +535,7 @@ class MainWindow(QMainWindow):
                                         margin-bottom: -1px; 
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border: 1px solid #000000;
-                                        border-radius: 4px;
+                                        border-top: 2px solid #000;
                                     } 
 
                                     QTabBar::tab:hover { 
@@ -589,7 +588,7 @@ class MainWindow(QMainWindow):
 
 
             self.urlbar.setStyleSheet(
-               "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
+               "font-size: 10pt;border: 1px solid #0088ff;border-radius: 3px;background-color:#ffffff;color:#000000;padding: 4px 6px 4px 6px;")
             self.file_menu.setStyleSheet(
                 "color:#000000;background-color:#ffffff;")
             self.help_menu.setStyleSheet(
@@ -611,22 +610,21 @@ class MainWindow(QMainWindow):
         else:
             self.tabs.setStyleSheet("""
                                     QTabWidget {
-                                        background: #000000; 
+                                        background: #2a2a2e; 
                                     }
                                     QTabBar {
-                                        background: #000000; 
+                                        background: #2a2a2e; 
                                     }
 
                                     QTabBar::tab {
-                                        background: #000000; 
+                                        background: #2a2a2e; 
                                         padding: 10px;
                                         color: #ffffff;
                                         margin-top: -1px;
                                         margin-bottom: -1px;
                                         margin-left: 1pt solid black;
                                         margin-right: 1pt solid black;
-                                        border: 1px solid #ffffff;
-                                        border-radius: 4px;
+                                        border-top: 2px solid #fff;
                                     } 
 
                                     QTabBar::tab:hover { 
@@ -640,15 +638,15 @@ class MainWindow(QMainWindow):
                                     """)
             self.navtb.setStyleSheet("""
                                 QToolBar {
-                                    background-color: #000000; 
+                                    background-color: #2a2a2e; 
                                     color:#ffffff;
                                 }
                                 QToolBar QToolButton {
-                                    background-color: #000000;
+                                    background-color: #2a2a2e;
                                     border-radius: 2px;
                                 }
                                 QToolBar QToolButton:pressed {
-                                    background-color: #000000;
+                                    background-color: #2a2a2e;
                                     border-radius: 2px;
                                 }
                                 
@@ -672,18 +670,18 @@ class MainWindow(QMainWindow):
                                     
                                     """)
 
-            self.statusBar().setStyleSheet("background-color : #000000 ; color : #ffffff")
+            self.statusBar().setStyleSheet("background-color : #2a2a2e ; color : #ffffff")
 
             self.urlbar.setStyleSheet(
-                 "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
+                 "font-size: 10pt;border: 1px solid #0088ff;border-radius: 3px;background-color:#38383d;color:#000000;padding: 4px 6px 4px 6px;")
             self.file_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000; ")
+                "color:#ffffff;background-color:#2a2a2e; ")
             self.help_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000;")
+                "color:#ffffff;background-color:#2a2a2e;")
             self.tool_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000;")
+                "color:#ffffff;background-color:#2a2a2e;")
             self.menuBar().setStyleSheet(
-                'color:#ffffff;background-color:#000000;border: 1px solid black')
+                'color:#ffffff;background-color:#2a2a2e;border: 1px solid black')
             
             with open('config.json', 'r+') as f:
                 data = json.load(f)
