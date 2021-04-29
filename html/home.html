@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Tab</title>
+    <style>
+         :root {
+            --navHeight: 70px;
+            --sage: #ffffff;
+            --paleSpringBud: #ffffff;
+            --goldCrayola: #ffffff;
+            --richBlackForeground: #000000;
+            --white: #ffffff;
+            --black: #000000;
+            --msuGreen: #000000;
+            --gray: #ffffff;
+            --lighGray: #38383d;
+            --darkGray: #2a2a2e;
+            --lighterGray: #5f5f63;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            color: var(--fontColor);
+            transition: background-color 0.6s ease, color 1s ease;
+        }
+        
+        .switch {
+            width: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .switch div {
+            position: relative;
+            display: block;
+            background: #eee;
+            width: 30px;
+            border-radius: 50px;
+            padding: 0 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        
+        .fa-adjust {
+            transform: rotate(180deg);
+        }
+        
+        .switch input {
+            display: none;
+        }
+        
+        .slider {
+            background-color: #999;
+            transition: 0.4s;
+            border-radius: 34px;
+            height: 12px;
+            width: 12px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        input:checked+.slider {
+            transform: translateX(8px);
+        }
+        
+        nav {
+            font-size: 1.1rem;
+            position: relative;
+            background: var(--navBg);
+        }
+        
+        nav ul {
+            list-style-type: none;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+            height: var(--navHeight);
+            padding: 0 10px;
+        }
+        
+        nav ul li {
+            padding: 12px 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        body {
+            background: var(--mainBg);
+            height: calc(100vh - var(--navHeight));
+        }
+        
+        .light-theme {
+            --themeDropDownBg: var(--goldCrayola);
+            --themeIconBorderColor: var(--sage);
+            --navBg: var(--sage);
+            --navLinkHoverBg: var(--paleSpringBud);
+            --mainBg: var(--goldCrayola);
+            --fontColor: var(--black);
+            --inputBg: var(--white);
+            --borderColor: var(--white)
+        }
+        
+        .dark-theme {
+            --themeDropDownBg: var(--darkGray);
+            --themeIconBorderColor: var(--darkGray);
+            --navBg: var(--darkGray);
+            --navLinkHoverBg: var(--darkGray);
+            --mainBg: var(--darkGray);
+            --fontColor: var(--white);
+            --inputBg: var(--lighGray);
+            --borderColor: var(--lighterGray)
+        }
+        
+        input[type=search] {
+            border-radius: 3px;
+            border: solid 1px var(--borderColor);
+            box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15);
+            width: 50%;
+            padding: 16px 18px 16px 18px;
+            box-sizing: border-box;
+            background-color: var(--inputBg);
+            color: var(--fontColor);
+            outline: none;
+            margin: 0;
+        }
+        
+        .search-engine-logo {
+            width: 13%;
+        }
+    </style>
+</head>
+
+<body class="light-theme">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <label class="switch">
+              
+              <div>
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </div>
+            </label>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div align="center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="https://www.ecosia.org/">
+            <img class="search-engine-logo" src="../images/searchEngineLogos/ecosiaBig.png" alt=""></a>
+        <br>
+        <br>
+        <form action="https://www.ecosia.org/search" method="GET">
+            <input data-v-126b1b98="" placeholder="Search the Web..." aria-label="" type="search" name="q" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus="autofocus" required="required" data-test-id="search-form-input" class="input">
+        </form>
+    </div>
+
+
+    <script>
+        const themeSwitch = document.querySelector('input');
+
+        themeSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+    </script>
+</body>
+
+</html>
