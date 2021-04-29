@@ -29,7 +29,7 @@ To run Web Plus, you will need the following dependencies: **Python3x**. At the 
     pip3 install -r requirements.txt
     python3 app.py
 
-### Under Windows
+### From a executable file for windows.
 
 Windows users can download binary releases on [SourceForge](https://sourceforge.net/projects/web-plus/).
 
