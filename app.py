@@ -7,8 +7,7 @@ import sys
 import validators
 from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets, QtPrintSupport
 import json
-import socket
-import io
+
 
 class AboutDialog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -197,17 +196,13 @@ class MainWindow(QMainWindow):
             lambda: self.tabs.currentWidget().reload())
         self.navtb.addAction(reload_btn)
 
-        stop_btn = QAction(
-            QIcon(os.path.join('images', 'cross-circle.png')), "Stop", self)
-        stop_btn.setStatusTip("Stop loading current page")
-        stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
-        self.navtb.addAction(stop_btn)
 
-        # self.httpsicon = QLabel()
-        # self.httpsicon.setFixedHeight(30)
-        # self.httpsicon.setPixmap(
-        #     QPixmap(os.path.join('images', 'lock-nossl.png')))
-        # self.navtb.addWidget(self.httpsicon)
+
+        	
+        self.httpsicon = QLabel()
+        self.httpsicon.setPixmap(
+            QPixmap(os.path.join('images', 'lock-nossl.png')))
+        self.navtb.addWidget(self.httpsicon)
 
         self.urlbar = QLineEdit()
         # self.urlbar.setStyleSheet("background-color : none; border-radius : None")
@@ -216,6 +211,12 @@ class MainWindow(QMainWindow):
         self.urlbar.setFixedHeight(28)
         self.navtb.addWidget(self.urlbar)
 
+        stop_btn = QAction(
+            QIcon(os.path.join('images', 'cross-circle.png')), "Stop", self)
+        stop_btn.setStatusTip("Stop loading current page")
+        stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
+        self.navtb.addAction(stop_btn)
+        '''
         connect_btn = QAction(
             QIcon(os.path.join('images', 'lock-ssl.png')), "Connection Status", self)
         # connect_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
@@ -225,11 +226,11 @@ class MainWindow(QMainWindow):
             QIcon(os.path.join('images', 'extension.png')), "Extension", self)
         # extension_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
         self.navtb.addAction(extension_btn)
-
+        
         option_btn = QAction(
             QIcon(os.path.join('images', 'options.png')), "Option", self)
         # option_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
-        self.navtb.addAction(option_btn)
+        self.navtb.addAction(option_btn)'''
 
         # Uncomment to disable native menubar on Mac
         # self.menuBar().setNativeMenuBar(False)
@@ -294,7 +295,6 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-        self.ChangeChromiumNoInternetErrorDialog()
 
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
@@ -362,7 +362,7 @@ class MainWindow(QMainWindow):
         browser.iconChanged.connect(lambda _, i=i, browser=browser:
                                      self.tabs.setTabIcon(i, browser.icon()))
 
-        self.ChangeChromiumNoInternetErrorDialog()
+
 
     def printRequested(self):
         # if you are viewing this part of my code can you please improve this as I don't think this is the best way to print a page and I can't understand how to fix this
@@ -467,37 +467,37 @@ class MainWindow(QMainWindow):
             # If this signal is not from the current tab, ignore
             return
 
-        # if q.scheme() == 'https':
-        #     # Secure padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'lock-ssl.png')))
-        #     self.httpsicon.setStatusTip("Your connection is secure")
+        if q.scheme() == 'https':
+            # Secure padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'ssl.png')))
+            self.httpsicon.setStatusTip("Your connection is secure")
 
-        # elif q.scheme() == 'http':
-        #     # Insecure padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'lock-nossl.png')))
-        #     self.httpsicon.setStatusTip("Your connection is not secure")
+        elif q.scheme() == 'http':
+            # Insecure padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'lock-nossl.png')))
+            self.httpsicon.setStatusTip("Your connection is not secure")
 
-        # elif q.scheme() == 'file':
-        #     if url == "file:///html/home.html":
-        #         # search padlock icon
-        #         self.httpsicon.setPixmap(
-        #             QPixmap(os.path.join('images', 'search.png')))
-        #         self.httpsicon.setStatusTip("Search or type a url")
-        #     else:
-        #         # file padlock icon
-        #         self.httpsicon.setPixmap(
-        #             QPixmap(os.path.join('images', 'file.png')))
-        #         self.httpsicon.setStatusTip(
-        #             "You are viewing a local or shared file")
+        elif q.scheme() == 'file':
+            if url == "file:///html/home.html":
+                # search padlock icon
+                self.httpsicon.setPixmap(
+                    QPixmap(os.path.join('images', 'search.png')))
+                self.httpsicon.setStatusTip("Search or type a url")
+            else:
+                # file padlock icon
+                self.httpsicon.setPixmap(
+                    QPixmap(os.path.join('images', 'file.png')))
+                self.httpsicon.setStatusTip(
+                    "You are viewing a local or shared file")
 
-        # elif q.scheme() == 'view-source':
-        #     # source code padlock icon
-        #     self.httpsicon.setPixmap(
-        #         QPixmap(os.path.join('images', 'code.png')))
-        #     self.httpsicon.setStatusTip(
-        #         f"You are viewing the source of a website")
+        elif q.scheme() == 'view-source':
+            # source code padlock icon
+            self.httpsicon.setPixmap(
+                QPixmap(os.path.join('images', 'code.png')))
+            self.httpsicon.setStatusTip(
+                f"You are viewing the source of a website")
 
         if url == "file:///html/home.html":
             self.urlbar.setText("")
@@ -682,16 +682,6 @@ class MainWindow(QMainWindow):
                 json.dump(data, f, indent=4)
                 f.truncate()
 
-
-    def ChangeChromiumNoInternetErrorDialog(self):
-        Host = socket.gethostname()
-        IP = socket.gethostbyname(Host)
-        if "127.0.0.1" in IP:
-            self.tabs.currentWidget().setUrl(QUrl("file:///html/no-internet.html"))     
-            self.urlbar.setText("chrome://info:error")
-            self.show()
-        else:
-            pass
     
 if __name__ == '__main__':
     app = QApplication(sys.argv)
