@@ -157,11 +157,12 @@ class MainWindow(QMainWindow):
 
         self.nav = QToolBar("Navigation")
         self.nav.setOrientation(QtCore.Qt.Vertical)
-        self.nav.setIconSize(QSize(16, 16))
+        self.nav.setIconSize(QSize(26, 26))
+        self.nav.setMovable(False)
         self.addToolBar(QtCore.Qt.RightToolBarArea, self.nav)
 
         add = QAction(
-            QIcon(os.path.join('images', 'ui-tab--plus')), "Add new tab", self)
+            QIcon(os.path.join('images', 'plus.png')), "Add new tab", self)
         add.setStatusTip("Add new tab")
         add.triggered.connect(lambda _: self.add_new_tab())
         self.nav.addAction(add)
