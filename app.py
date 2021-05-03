@@ -183,12 +183,14 @@ class MainWindow(QMainWindow):
         next_btn.setStatusTip("Forward to next page")
         next_btn.triggered.connect(lambda: self.tabs.currentWidget().forward())
         self.navtb.addAction(next_btn)
-
+        
+        '''
         home_btn = QAction(
             QIcon(os.path.join('images', 'home.png')), "Home", self)
         home_btn.setStatusTip("Open the home page")
         home_btn.triggered.connect(self.navigate_home)
         self.navtb.addAction(home_btn)
+        '''
 
         reload_btn = QAction(
             QIcon(os.path.join('images', 'arrow-circle-315.png')), "Reload", self)
@@ -198,12 +200,8 @@ class MainWindow(QMainWindow):
         self.navtb.addAction(reload_btn)
 
 
-
-        	
-        self.httpsicon = QLabel()
-        self.httpsicon.setPixmap(
-            QPixmap(os.path.join('images', 'lock-nossl.png')))
-        self.navtb.addWidget(self.httpsicon)
+        self.connect_btn = QAction(QIcon(os.path.join('images', 'lock-nossl.png')), "Connection Status", self)
+        self.navtb.addAction(self.connect_btn)
 
         self.urlbar = QLineEdit()
         # self.urlbar.setStyleSheet("background-color : none; border-radius : None")
@@ -470,34 +468,29 @@ class MainWindow(QMainWindow):
 
         if q.scheme() == 'https':
             # Secure padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'ssl.png')))
-            self.httpsicon.setStatusTip("Your connection is secure")
+            self.connect_btn.setIcon(QIcon(os.path.join('images', 'ssl.png')))
+            self.connect_btn.setStatusTip("Your connection is secure")
 
         elif q.scheme() == 'http':
             # Insecure padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'lock-nossl.png')))
-            self.httpsicon.setStatusTip("Your connection is not secure")
+            self.connect_btn.setIcon(QIcon(os.path.join('images', 'lock-nossl.png')))
+            self.connect_btn.setStatusTip("Your connection is not secure")
 
         elif q.scheme() == 'file':
             if url == "file:///html/home.html":
                 # search padlock icon
-                self.httpsicon.setPixmap(
-                    QPixmap(os.path.join('images', 'search.png')))
-                self.httpsicon.setStatusTip("Search or type a url")
+                self.connect_btn.setIcon(QIcon(os.path.join('images', 'search.png')))
+                self.connect_btn.setStatusTip("Search or type a url")
             else:
                 # file padlock icon
-                self.httpsicon.setPixmap(
-                    QPixmap(os.path.join('images', 'file.png')))
-                self.httpsicon.setStatusTip(
+                self.connect_btn.setIcon(QIcon(os.path.join('images', 'file.png')))
+                self.connect_btn.setStatusTip(
                     "You are viewing a local or shared file")
 
         elif q.scheme() == 'view-source':
             # source code padlock icon
-            self.httpsicon.setPixmap(
-                QPixmap(os.path.join('images', 'code.png')))
-            self.httpsicon.setStatusTip(
+            self.connect_btn.setIcon(QIcon(os.path.join('images', 'code.png')))
+            self.connect_btn.setStatusTip(
                 f"You are viewing the source of a website")
 
         if url == "file:///html/home.html":
