@@ -168,7 +168,7 @@ class MainWindow(QMainWindow):
         self.nav.addAction(add)
 
         self.navtb = QToolBar("Navigation")
-        self.navtb.setIconSize(QSize(30, 30))
+        self.navtb.setIconSize(QSize(25, 25))
         self.navtb.setMovable(False)
         self.addToolBar(self.navtb)
 
@@ -297,9 +297,9 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Web Plus")
         self.setWindowIcon(QIcon(os.path.join('images', 'ma-icon-64.png')))
-        self.setGeometry(100,100,1200,700)
         self.switch()
         self.darkTheme()
+    
     
 
     def switch(self):
@@ -483,7 +483,7 @@ class MainWindow(QMainWindow):
                 self.connect_btn.setStatusTip("Search or type a url")
             else:
                 # file padlock icon
-                self.connect_btn.setIcon(QIcon(os.path.join('images', 'file.png')))
+                self.connect_btn.setIcon(QIcon(os.path.join('images', 'document.png')))
                 self.connect_btn.setStatusTip(
                     "You are viewing a local or shared file")
 
