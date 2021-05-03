@@ -483,7 +483,10 @@ class MainWindow(QMainWindow):
                 self.connect_btn.setStatusTip("Search or type a url")
             else:
                 # file padlock icon
+
                 self.connect_btn.setIcon(QIcon(os.path.join('images', 'document.png')))
+                self.connect_btn.setIcon(QIcon(os.path.join('images', 'file.png')))
+
                 self.connect_btn.setStatusTip(
                     "You are viewing a local or shared file")
 
