@@ -53,8 +53,8 @@ The browser is written primarily in Python3x and leverages powerful features off
 
 Have a look at the [open issues](https://github.com/SaptakBhoumik/WebPlus/issues) to find a mission that resonates with you.
 
-Want to get the latest build for new features?
-Use the python version.
+Want to get the latest build for new features and the fastest bug fixes?
+Use the python build.
 
 # Contact
 Email: saptakbhoumik@gmail.com <br />
