@@ -37,10 +37,15 @@ Windows users can download binary releases on [SourceForge](https://sourceforge.
 ![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png)
 # Todo
 (i)Improve the UI <br />
+
 (ii)Give the option to change to default search engine of Web Plus <br />
+
 (iii)Give more features for developers like inspect(like all other modern web browsers) <br />
+
 (iv)Develop a version that is compatible with macOS and Linux <br />
+
 (v)Add support for websites with live video and hyperlink with target="_blank" <br />
+
 ## How to contribute
 Web Plus is *your* browser. Because it is free software (GPL v3), you can contribute to make it better. New contributors are always welcome, whether you write code, create resources, report bugs, or suggest features.
 
