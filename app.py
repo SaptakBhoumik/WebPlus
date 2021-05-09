@@ -152,21 +152,6 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.tabs)
 
 
-        self.status = QStatusBar()
-        self.setStatusBar(self.status)
-
-        self.nav = QToolBar("Navigation")
-        self.nav.setOrientation(QtCore.Qt.Vertical)
-        self.nav.setIconSize(QSize(26, 26))
-        self.nav.setMovable(False)
-        self.addToolBar(QtCore.Qt.RightToolBarArea, self.nav)
-
-        add = QAction(
-            QIcon(os.path.join('images', 'plus.png')), "Add new tab", self)
-        add.setStatusTip("Add new tab")
-        add.triggered.connect(lambda _: self.add_new_tab())
-        self.nav.addAction(add)
-
         self.navtb = QToolBar("Navigation")
         self.navtb.setIconSize(QSize(25, 25))
         self.navtb.setMovable(False)
@@ -174,27 +159,17 @@ class MainWindow(QMainWindow):
 
         back_btn = QAction(
             QIcon(os.path.join('images', 'arrow-180.png')), "Back", self)
-        back_btn.setStatusTip("Back to previous page")
         back_btn.triggered.connect(lambda: self.tabs.currentWidget().back())
         self.navtb.addAction(back_btn)
 
         next_btn = QAction(
             QIcon(os.path.join('images', 'arrow-000.png')), "Forward", self)
-        next_btn.setStatusTip("Forward to next page")
         next_btn.triggered.connect(lambda: self.tabs.currentWidget().forward())
         self.navtb.addAction(next_btn)
         
-        '''
-        home_btn = QAction(
-            QIcon(os.path.join('images', 'home.png')), "Home", self)
-        home_btn.setStatusTip("Open the home page")
-        home_btn.triggered.connect(self.navigate_home)
-        self.navtb.addAction(home_btn)
-        '''
 
         reload_btn = QAction(
             QIcon(os.path.join('images', 'arrow-circle-315.png')), "Reload", self)
-        reload_btn.setStatusTip("Reload page")
         reload_btn.triggered.connect(
             lambda: self.tabs.currentWidget().reload())
         self.navtb.addAction(reload_btn)
@@ -212,83 +187,57 @@ class MainWindow(QMainWindow):
 
         stop_btn = QAction(
             QIcon(os.path.join('images', 'cross-circle.png')), "Stop", self)
-        stop_btn.setStatusTip("Stop loading current page")
         stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
         self.navtb.addAction(stop_btn)
-        '''
-        connect_btn = QAction(
-            QIcon(os.path.join('images', 'lock-ssl.png')), "Connection Status", self)
-        # connect_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
-        self.navtb.addAction(connect_btn)
 
-        extension_btn = QAction(
-            QIcon(os.path.join('images', 'extension.png')), "Extension", self)
-        # extension_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
-        self.navtb.addAction(extension_btn)
-        
-        option_btn = QAction(
-            QIcon(os.path.join('images', 'options.png')), "Option", self)
-        # option_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
-        self.navtb.addAction(option_btn)'''
-
-        # Uncomment to disable native menubar on Mac
-        # self.menuBar().setNativeMenuBar(False)
-
-        self.file_menu = self.menuBar().addMenu("&File")
+        menu = QtWidgets.QMenu(self)
         new_tab_action = QAction(
             QIcon(os.path.join('images', 'ui-tab--plus.png')), "New Tab", self)
-        new_tab_action.setStatusTip("Open a new tab")
         new_tab_action.triggered.connect(lambda _: self.add_new_tab())
-        self.file_menu.addAction(new_tab_action)
+        menu.addAction(new_tab_action)
 
         print_action = QAction(
             QIcon(os.path.join('images', 'printer.png')), "Print", self)
-        print_action.setStatusTip("Print the webpage")
         print_action.triggered.connect(self.printRequested)
-        self.file_menu.addAction(print_action)
+        menu.addAction(print_action)
 
         open_file_action = QAction(
             QIcon(os.path.join('images', 'disk--arrow.png')), "Open file...", self)
-        open_file_action.setStatusTip("Open from file")
         open_file_action.triggered.connect(self.open_file)
-        self.file_menu.addAction(open_file_action)
+        menu.addAction(open_file_action)
 
-        self.help_menu = self.menuBar().addMenu("&Help")
-
-        about_action = QAction(
-            QIcon(os.path.join('images', 'question.png')), "About Web Plus", self)
-        about_action.setStatusTip("Find out more about Web Plus")
+        about_action = QAction(QIcon(os.path.join('images', 'question.png')), "About Web Plus", self)
         about_action.triggered.connect(self.about)
-        self.help_menu.addAction(about_action)
+        menu.addAction(about_action)
 
         keyboard = QAction(
             QIcon(os.path.join('images', 'keyboard.png')), "Keyboard Shotcut", self)
-        keyboard.setStatusTip(
-            "Find out more about Web Plus's Keyboard Shotcuts")
         keyboard.triggered.connect(self.keyboardshotcut)
-        self.help_menu.addAction(keyboard)
+        menu.addAction(keyboard)
 
         navigate_mozarella_action = QAction(QIcon(os.path.join('images', 'lifebuoy.png')),
                                             "Web Plus Homepage", self)
-        navigate_mozarella_action.setStatusTip("Go to Web Plus Homepage")
         navigate_mozarella_action.triggered.connect(self.navigate_mozarella)
-        self.help_menu.addAction(navigate_mozarella_action)
+        menu.addAction(navigate_mozarella_action)
 
-        self.tool_menu = self.menuBar().addMenu("&Tools")
         view = QAction(QIcon(os.path.join('images', 'view.png')),
                        "View page source code", self)
-        view.setStatusTip("View page source code")
         view.triggered.connect(self.view)
-        self.tool_menu.addAction(view)
+        menu.addAction(view)
 
-        self.settings_menu = self.menuBar().addMenu("&Settings")
         dark_theme_action = QAction(QIcon(os.path.join('images', 'icon.png')),
                        "Dark theme", self)
-        dark_theme_action.setStatusTip("Enable/Disable dark mode")
         dark_theme_action.triggered.connect(self.darkTheme)
-        self.settings_menu.addAction(dark_theme_action)
+        menu.addAction(dark_theme_action)
 
-        
+        option_btn = QAction(
+            QIcon(os.path.join('images', 'options.png')), "Option", self)
+        option_btn.setMenu(menu)
+        self.navtb.addAction(option_btn)
+
+        # Uncomment to disable native menubar on Mac
+        # self.menuBar().setNativeMenuBar(False)
+   
 
         self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
 
@@ -469,32 +418,28 @@ class MainWindow(QMainWindow):
         if q.scheme() == 'https':
             # Secure padlock icon
             self.connect_btn.setIcon(QIcon(os.path.join('images', 'ssl.png')))
-            self.connect_btn.setStatusTip("Your connection is secure")
+            #self.connect_btn.setStatusTip("Your connection is secure")
 
         elif q.scheme() == 'http':
             # Insecure padlock icon
             self.connect_btn.setIcon(QIcon(os.path.join('images', 'lock-nossl.png')))
-            self.connect_btn.setStatusTip("Your connection is not secure")
+            #self.connect_btn.setStatusTip("Your connection is not secure")
 
         elif q.scheme() == 'file':
             if url == "file:///html/home.html":
                 # search padlock icon
                 self.connect_btn.setIcon(QIcon(os.path.join('images', 'search.png')))
-                self.connect_btn.setStatusTip("Search or type a url")
+                #self.connect_btn.setStatusTip("Search or type a url")
             else:
                 # file padlock icon
 
                 self.connect_btn.setIcon(QIcon(os.path.join('images', 'document.png')))
-                self.connect_btn.setIcon(QIcon(os.path.join('images', 'file.png')))
-
-                self.connect_btn.setStatusTip(
-                    "You are viewing a local or shared file")
+                #self.connect_btn.setStatusTip("You are viewing a local or shared file")
 
         elif q.scheme() == 'view-source':
             # source code padlock icon
             self.connect_btn.setIcon(QIcon(os.path.join('images', 'code.png')))
-            self.connect_btn.setStatusTip(
-                f"You are viewing the source of a website")
+            #self.connect_btn.setStatusTip(f"You are viewing the source of a website")
 
         if url == "file:///html/home.html":
             self.urlbar.setText("")
@@ -556,40 +501,9 @@ class MainWindow(QMainWindow):
                                 }
                                 
                                 """)
-
-
-            self.nav.setStyleSheet("""
-                                QToolBar {
-                                    background-color : #ffffff; 
-                                    margin-bottom: -1px;
-                                    color:#000000;
-                                }
-                                QToolBar QToolButton {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
-                                }
-                                QToolBar QToolButton:pressed {
-                                    background-color: #ffffff;
-                                    border-radius: 2px;
-                                }
-                                
-                                """)
-
-
-            self.statusBar().setStyleSheet("background-color : #ffffff ; color : #000000")
-
-
+            
             self.urlbar.setStyleSheet(
                "font-size: 11pt;border: 1px solid #0088ff;border-radius: 10px;background-color:#ffffff;color:#000000")
-            self.file_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-            self.help_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-            self.tool_menu.setStyleSheet(
-                "color:#000000;background-color:#ffffff;")
-
-            self.menuBar().setStyleSheet(
-                'color:#000000;background-color:#ffffff;border: 1px solid white')
 
 
             with open('config.json', 'r+') as f:
@@ -641,36 +555,8 @@ class MainWindow(QMainWindow):
                                 }
                                 
                                 """)
-            
-            self.nav.setStyleSheet("""
-                                    QToolBar {
-                                        background-color : #ffffff; 
-                                        margin-bottom: -1px;
-                                        color:#000000;
-                                    }
-                                    QToolBar QToolButton {
-                                        background-color: #ffffff;
-                                        border-radius: 2px;
-                                    }
-                                    QToolBar QToolButton:pressed {
-                                        background-color: #ffffff;
-                                        border-radius: 2px;
-                                    }
-                                    
-                                    """)
-
-            self.statusBar().setStyleSheet("background-color : #000000 ; color : #ffffff")
-
             self.urlbar.setStyleSheet(
                  "font-size: 11pt;border: 1px solid #ffffff;border-radius: 10px;background-color:#333435;color:#ffffff")
-            self.file_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000; ")
-            self.help_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000;")
-            self.tool_menu.setStyleSheet(
-                "color:#ffffff;background-color:#000000;")
-            self.menuBar().setStyleSheet(
-                'color:#ffffff;background-color:#000000;border: 1px solid black')
             
             with open('config.json', 'r+') as f:
                 data = json.load(f)
