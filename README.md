@@ -57,8 +57,8 @@ Want to get the latest build for new features and the fastest bug fixes?
 Use the python build.
 
 # Contact
-Email: saptakbhoumik@gmail.com <br />
-If you find any bug tell me immediately
+Discord: https://discord.gg/dgcVfquuPH <br />
+If you find any bug make a issue **immediately**
 # License
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
