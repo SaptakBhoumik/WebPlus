@@ -33,18 +33,18 @@ To run Web Plus, you will need the following dependencies: **Python3x**. At the 
 
 Windows users can download executable releases on the releases page..
 
-# Screenshot
+# Screenshots
 ![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png)
 # Todo
-(i)Improve the UI <br />
+(i) Improve the UI <br />
 
-(ii)Give the option to change to default search engine of Web Plus <br />
+(ii) Give the option to change to default search engine of Web Plus <br />
 
-(iii)Give more features for developers like inspect(like all other modern web browsers) <br />
+(iii) Give more features for developers like inspect (like all other modern web browsers) <br />
 
-(iv)Develop a version that is compatible with macOS and Linux <br />
+(iv) Develop a version that is compatible with macOS and Linux <br />
 
-(v)Add support for websites with live video and hyperlink with target="_blank" <br />
+(v) Add support for websites with live video and hyperlink with target="_blank" <br />
 
 ## How to contribute
 Web Plus is *your* browser. Because it is free software (GPL v3), you can contribute to make it better. New contributors are always welcome, whether you write code, create resources, report bugs, or suggest features.
@@ -58,7 +58,7 @@ Use the python build.
 
 # Contact
 Discord: https://discord.gg/dgcVfquuPH <br />
-If you find any bug make a issue **immediately**
+If you find any bug make a issue **immediately.**
 # License
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -67,8 +67,8 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
+along with this program.  If not, please see <https://www.gnu.org/licenses/gpl-3.0.txt>.
