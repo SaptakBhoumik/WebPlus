@@ -1,7 +1,8 @@
 # WebPlus [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Web%20Plus%20is%20an%20open%20source%20web%20browser%20that%20respects%20your%20privacy&url=https://github.com/SaptakBhoumik/WebPlus&hashtags=free,privacy,webbrowser,browser,web,webplus)
-<p align="center">
+
+<!-- <p align="center">
 <a href="https://github.com/SaptakBhoumik/WebPlus/"><img width="727" src="https://img.shields.io/badge/Web-Plus-lightgray.svg?logo=appveyor&longCache=true&style=popout"></a>
-</p>
+</p> -->
 
 ---
 [![GitHub issues](https://img.shields.io/github/issues/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/issues)
@@ -17,7 +18,9 @@
 ![Open Source](https://badges.frapsoft.com/os/v2/open-source.png)
 [![SourceForge](https://img.shields.io/sourceforge/dt/web-plus.svg)](https://sourceforge.net/projects/web-plus/)
 
-Web Plus is an open source web browser that respects your privacy
+<hr>
+
+**Web Plus** is an open source web browser that respects your privacy
 ## Install
 
 You can either compile Web Plus from source or use pre-compiled binaries.
@@ -26,15 +29,26 @@ You can either compile Web Plus from source or use pre-compiled binaries.
 
 To run Web Plus, you will need the following dependencies: **Python3x**. At the root of the directory where the source code is stored, execute these commands:
 
-    pip3 install -r requirements.txt
-    python3 app.py
+Windows
+
+```
+pip install -r requirements.txt
+```
+
+Linux | Unix
+
+```
+pip3 install -r requirements.txt
+```
 
 ### From a executable for windows.
 
-Windows users can download executable releases on the releases page..
+Windows users can download executable releases on the releases page.
 
-# Screenshots
-![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png)![Unable To Display The Image](https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png)
+<img src="https://github.com/sijey-praveen/WebPlus/blob/master/screenshots/Untitled.png" width="550px">
+
+<hr>
+
 # Todo
 (i) Improve the UI <br />
 
@@ -46,6 +60,8 @@ Windows users can download executable releases on the releases page..
 
 (v) Add support for websites with live video and hyperlink with target="_blank" <br />
 
+<hr>
+
 ## How to contribute
 Web Plus is *your* browser. Because it is free software (GPL v3), you can contribute to make it better. New contributors are always welcome, whether you write code, create resources, report bugs, or suggest features.
 
@@ -56,9 +72,14 @@ Have a look at the [open issues](https://github.com/SaptakBhoumik/WebPlus/issues
 Want to get the latest build for new features and the fastest bug fixes?
 Use the python build.
 
+<hr>
+
 # Contact
 Discord: https://discord.gg/dgcVfquuPH <br />
-If you find any bug make a issue **immediately.**
+If you find any bug make a <a href="https://github.com/Adapt-Development/WebPlus/issues">issue</a> **immediately.**
+
+<hr>
+
 # License
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -70,5 +91,11 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, please see <https://www.gnu.org/licenses/gpl-3.0.txt>.
+```
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+```
