@@ -45,8 +45,6 @@ pip3 install -r requirements.txt
 
 Windows users can download executable releases on the releases page.
 
-# Screenshots
-
 <img src="https://github.com/sijey-praveen/WebPlus/blob/master/screenshots/Untitled.png" width="550px">
 
 <hr>
