@@ -47,7 +47,7 @@ Windows users can download executable releases on the releases page.
 
 # Screenshots
 
-<img src="https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled.png" width="350px"><img src="https://github.com/SaptakBhoumik/WebPlus/blob/master/screenshot/Untitled2.png" width="350px">
+<img src="https://github.com/sijey-praveen/WebPlus/blob/master/screenshots/Untitled.png" width="550px">
 
 <hr>
 
