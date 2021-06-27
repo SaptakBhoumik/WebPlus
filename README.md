@@ -1,8 +1,12 @@
 # WebPlus [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Web%20Plus%20is%20an%20open%20source%20web%20browser%20that%20respects%20your%20privacy&url=https://github.com/SaptakBhoumik/WebPlus&hashtags=free,privacy,webbrowser,browser,web,webplus)
 
-<!-- <p align="center">
+<p align="center">
 <a href="https://github.com/SaptakBhoumik/WebPlus/"><img width="727" src="https://img.shields.io/badge/Web-Plus-lightgray.svg?logo=appveyor&longCache=true&style=popout"></a>
-</p> -->
+</p> 
+
+
+# Note:-This project is no longer maintained
+
 
 ---
 [![GitHub issues](https://img.shields.io/github/issues/SaptakBhoumik/WebPlus)](https://github.com/SaptakBhoumik/WebPlus/issues)
@@ -76,11 +80,6 @@ Use the python build.
 
 <hr>
 
-# Contact
-Discord: https://discord.gg/dgcVfquuPH <br />
-If you find any bug make a <a href="https://github.com/Adapt-Development/WebPlus/issues">issue</a> **immediately.**
-
-<hr>
 
 # License
 This program is free software: you can redistribute it and/or modify
